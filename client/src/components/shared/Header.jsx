@@ -3,6 +3,29 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from 'react-icons/ai';
 
+const headersItem = [
+    {
+        route: "/home",
+        name: "Home"
+    },
+    {
+        route: "/teamCreate",
+        name: "Team Create"
+    },
+    {
+        route: "/blog",
+        name: "Blog"
+    },
+    {
+        route: "/dashboard",
+        name: "Dashboard"
+    },
+    {
+        route: "/login",
+        name: "Login"
+    },
+]
+
 
 const Header = () => {
 
@@ -10,11 +33,18 @@ const Header = () => {
 
 
     const navMenu = <>
-        <NavLink to="/home" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'}  > Home </NavLink>
-        <NavLink to="/teamCreate" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'}  > Team Create </NavLink>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'}  > Blog </NavLink>
-        <NavLink to="/contact" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'}  > Contact </NavLink>
-        <NavLink to="/login" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'}  > Login </NavLink>
+        {
+            headersItem.map((header, index) => <NavLink
+                key={index}
+                to={header.route}
+                className={({ isActive }) => isActive ?
+                    'text-secondary hover:text-third'
+                    :
+                    ' text-slate-600 hover:text-third'}
+            >
+                {header.name}
+            </NavLink>)
+        }
 
     </>
     return (
@@ -27,7 +57,10 @@ const Header = () => {
                         <div>
                             <h1 className="text-3xl font-extrabold cursor-pointer"> AI Master</h1>
                         </div>
-                        <div className="sm:flex-none  cursor-pointer flex  items-center mt-2" onClick={() => setToggle(!toggle)}>
+                        <div
+                            className="sm:flex-none  cursor-pointer flex  items-center mt-2"
+                            onClick={() => setToggle(!toggle)}
+                        >
                             <p className="pr-2 ">MENU </p>
                             <AiOutlineBars />
                         </div>
@@ -46,8 +79,8 @@ const Header = () => {
 
                 <div className=" hidden md:flex md:justify-between px-6 py-4   items-center text-slate-600">
                     <div>
-                        <h1 className="text-4xl font-extrabold cursor-pointer"> 
-                        <Link to='/' className="text-secondary">AI Master</Link>
+                        <h1 className="text-4xl font-extrabold cursor-pointer">
+                            <Link to='/' className="text-secondary">AI Master</Link>
                         </h1>
                     </div>
 

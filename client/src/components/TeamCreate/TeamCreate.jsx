@@ -4,6 +4,7 @@ import TitleSelect from './TitleSelect';
 import CategorySelect from './CategorySelect';
 import MembarsAdd from './MembarsAdd/MembarsAdd';
 import { useState } from 'react';
+import Deadline from './Deadline';
 
 
 
@@ -55,6 +56,8 @@ const TeamCreate = () => {
                         <Description setProjectDescription={setProjectDescription} />
 
                         <MembarsAdd setAllMembars={setAllMembars} />
+
+                        <Deadline />
 
                         <div className='mt-12'>
                             {errors && <div className="error  ">{errors}</div>}

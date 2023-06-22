@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Home from "../components/Home/Home";
 import ErrorPage from "../components/shared/ErrorPage";
 import TeamCreate from "../components/TeamCreate/TeamCreate";
+import Dashboard from "../components/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
             {
                 path: '/teamCreate',
                 element: <TeamCreate />
+            }
+            ,
+            {
+                path: '/dashboard',
+                element: <Dashboard />
             }
             
         ]
