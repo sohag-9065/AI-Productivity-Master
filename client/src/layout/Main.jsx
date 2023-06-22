@@ -1,11 +1,15 @@
+import { Outlet } from "react-router-dom";
 import Header from "../components/shared/Header";
+import FooterSection from "../components/shared/FooterSection"; 
 
  
 const Main = () => {
     return (
         <div>
-            <Header />
-            <button className="btn">Hello daisyUI</button>
+            <Header />  
+
+            <Outlet />
+            <FooterSection />
         </div>
     );
 };

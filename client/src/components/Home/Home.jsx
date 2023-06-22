@@ -1,8 +1,13 @@
  
+import HomeSlider from "./HomeSlider";
+import PricePlan from "./PricePlan";
+
+ 
 const Home = () => {
     return (
-        <div>
-            <h1>This is Home</h1>
+        <div> 
+            <HomeSlider /> 
+            <PricePlan />
         </div>
     );
 };
