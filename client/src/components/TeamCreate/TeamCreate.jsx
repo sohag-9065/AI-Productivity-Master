@@ -15,7 +15,6 @@ const TeamCreate = () => {
 
     const [errors, setErrors] = useState("");
 
-
     const validateForm = () => {
         if (catagorydata && projectTitle && projectDescription && allMembars) {
             setErrors("");
@@ -24,8 +23,7 @@ const TeamCreate = () => {
             setErrors(" Please complete form! ");
             return false;
         }
-    };
-
+    }; 
 
     const handleSubmit = (e) => {
         e.preventDefault();
