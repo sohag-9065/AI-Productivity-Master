@@ -21,9 +21,13 @@ const headersItem = [
         name: "Dashboard"
     },
     {
-        route: "/login",
+        route: "/signIn",
         name: "Login"
     },
+    {
+        route: "/signUp",
+        name: "Register"
+    }
 ]
 
 
