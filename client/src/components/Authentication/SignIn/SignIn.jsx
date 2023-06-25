@@ -1,17 +1,29 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useContext } from 'react'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
+import { AuthContext } from '../../../context/AuthProvider'
 
 const SignIn = () => {
+    const {signIn} = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || "/"
     const handleSignIn=event=>{
         event.preventDefault();
         const form = event.target;
         const email= form.email.value;
         const password = form.password.value;
-        const user = {
+        const profile = {
             email,
             password
         }
-        console.log(user)
+        console.log(profile)
+        signIn(email,password)
+        .then(res=>{
+            const user = res.user;
+            console.log(user)
+            navigate(from,{replace:true})
+        })
     }
   return (
     <div className="hero min-h-screen bg-base-200">

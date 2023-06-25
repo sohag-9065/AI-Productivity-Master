@@ -1,10 +1,11 @@
 import React from 'react'
 import { useContext } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
 
 const SignUp = () => {
-    const {signUp} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const {signUp,getProfile,logOut} = useContext(AuthContext)
     const handleSignUp=event=>{
         event.preventDefault();
         const form = event.target;
@@ -20,7 +21,15 @@ const SignUp = () => {
         signUp(email, password)
         .then(res=>{
             const user = res.user;
-            console.log(user)
+            // console.log(user)
+            getProfile(name)
+            .then(res=>{
+                // const user = res.user;
+                console.log(user);
+                // console.log(res);
+                logOut()
+                navigate("/signIn")
+            })
         })
     }
   return (
