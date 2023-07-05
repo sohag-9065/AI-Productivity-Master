@@ -94,7 +94,7 @@ const AutoSuggestInput = ({
                 onChange={handleChange}
                 onClick={handleClick}
                 type="text"
-                className='border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-3 rounded-full '
+                className='border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-full '
                 // className="w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition"
                 placeholder={placeholderlText}
             />

@@ -20,7 +20,7 @@ const MembarsAddTable = ({userNames,  deleteRow }) => {
                 return (
                   <tr key={idx}>
                     <td>{idx + 1}</td>
-                    <td className="expand">{user.userName}</td> 
+                    <td className="expand">{user}</td> 
                      
                     <td className="fit expand">
                       <span className="actions">

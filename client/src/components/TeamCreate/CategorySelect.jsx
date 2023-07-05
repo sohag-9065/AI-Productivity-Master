@@ -29,7 +29,7 @@ const CategorySelect = ({ setCatagoryData }) => {
     return (
         <div>
             <label className="label">
-                <span className="label-text ml-1">Project Category <span className='text-slate-400'>( Optional )</span></span>
+                <span className="label-text ml-1">Task Category <span className='text-slate-400'>( Optional )</span></span>
             </label>
             <AutoSuggestInput
                 results={results}

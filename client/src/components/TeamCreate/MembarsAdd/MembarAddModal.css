@@ -13,34 +13,11 @@
   
   .moda {
     border-radius: 5px;
-    padding: 3rem;
-    background-color: white;
-    width: 25em;
+    padding: 2rem; 
   }
   
-  .moda .btn {
-    display: block;
-    margin: auto;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    border: 1px solid black;
-    border-radius: 0.3rem;
-    padding: 0.3rem;
-    font-size: 1rem;
-  }
-  
-  .form-group label {
-    margin-bottom: 0.2rem;
-  }
+
+ 
   
   .error {
     background-color: #f8d7da;

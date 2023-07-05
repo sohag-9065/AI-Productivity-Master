@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from 'react-icons/ai';
+import { AuthContext } from '../../context/AuthProvider'
 
 const headersItem = [
     {
@@ -17,16 +18,8 @@ const headersItem = [
         name: "Blog"
     },
     {
-        route: "/dashboard",
+        route: "/dashboard/my-profile",
         name: "Dashboard"
-    },
-    {
-        route: "/signIn",
-        name: "Login"
-    },
-    {
-        route: "/signUp",
-        name: "Register"
     }
 ]
 
@@ -34,7 +27,10 @@ const headersItem = [
 const Header = () => {
 
     const [toggle, setToggle] = useState(false);
+    const { user, getProfile, logOut } = useContext(AuthContext)
+ 
 
+ 
 
     const navMenu = <>
         {
@@ -49,6 +45,20 @@ const Header = () => {
                 {header.name}
             </NavLink>)
         }
+
+        {
+            user ?
+                <NavLink  onClick={ () => logOut()}  className=  ' text-slate-600 hover:text-third'  > SingOut </NavLink>
+
+                :
+
+                <>
+                    <NavLink to="/signIn" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'} > Login </NavLink>
+                    <NavLink to="/signUp" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'} > Register </NavLink>
+                </>
+
+        }
+
 
     </>
     return (
