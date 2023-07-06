@@ -1,7 +1,10 @@
 import React from 'react'
+import Lottie from "lottie-react"
 import { useContext } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
+import SignUpModal from './SignUpModal/SignUpModal'
+import collab from "../../../assets/animations/collaboration.json"
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -33,11 +36,13 @@ const SignUp = () => {
         })
     }
   return (
-    <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
-    <h1 className="text-5xl font-bold">Register!</h1>
-      <p className="py-6 capitalize">to create your own team and let the ai decide to manage the the task you just need to register</p>
+    <div className="hero min-h-screen p-10">
+  <div className="flex gap-12 justify-around flex-col lg:flex-row-reverse">
+    <div className="text-center w-1/2 lg:text-left">
+      <h1 className="text-5xl font-bold text-blue-500 text-center">Login now!</h1>
+      <div className="mt-6 mx-auto">
+      <Lottie animationData={collab}></Lottie>
+      </div>
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <form onSubmit={handleSignUp} className="card-body">
@@ -64,8 +69,11 @@ const SignUp = () => {
         </div>
         <div className="form-control mt-6">
           {/* <button className="btn btn-primary">Login</button> */}
-          <input type="submit" value="Register" className='btn btn-primary' />
+          <input type="submit" value="register" className='btn btn-primary' />
+          <div className="divider">OR</div>
+          <label htmlFor="google-modal" className="btn btn-success">Sign in with Google</label>
         </div>
+        <SignUpModal/>
       </form>
     </div>
   </div>

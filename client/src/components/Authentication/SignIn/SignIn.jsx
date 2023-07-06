@@ -1,7 +1,10 @@
 import React from 'react'
+import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
+import SignUpModal from '../SignUp/SignUpModal/SignUpModal'
+import login from '../../../assets/animations/login.json'
 
 const SignIn = () => {
     const {signIn} = useContext(AuthContext)
@@ -26,13 +29,15 @@ const SignIn = () => {
         })
     }
   return (
-    <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Login now!</h1>
-      <p className="py-6 capitalize">to create your own team and let the ai decide to manage the the task you just need to login</p>
+    <div className="hero min-h-screen p-10">
+  <div className="flex gap-12 justify-around flex-col lg:flex-row-reverse">
+    <div className="text-center w-1/2 lg:text-left">
+      <h1 className="text-5xl font-bold text-blue-500 text-center">Login now!</h1>
+      <div className="mt-6 mx-auto">
+      <Lottie animationData={login}></Lottie>
+      </div>
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="card h-full w-full max-w-sm shadow-2xl bg-base-100">
       <form onSubmit={handleSignIn} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -51,7 +56,10 @@ const SignIn = () => {
         </div>
         <div className="form-control mt-6">
           <input type="submit" value="Login" className='btn btn-primary' />
+          <div className="divider">OR</div>
+          <label htmlFor="google-modal" className="btn btn-success">Sign in with Google</label>
         </div>
+        <SignUpModal/>
       </form>
     </div>
   </div>
