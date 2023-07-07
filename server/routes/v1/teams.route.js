@@ -40,10 +40,19 @@ router
    * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
    */
   .post(teamsControllers.saveATeam);
- 
 
-  // router
-  // .route("/:id")
-  // .get(teamsControllers.getATeam);
+  router
+  .route("/invite")
+  .get( teamsControllers.getAllInvitedTeams);
 
-  module.exports = router;
+  router
+  .route("/progress/:id")
+  .patch( teamsControllers.updateTeamProgress);
+
+router
+  .route("/:id")
+  .get( teamsControllers.getTeamDetail)
+  .patch(teamsControllers.updateATeam)
+  // .delete(toolsControllers.deleteTool);
+
+module.exports = router;

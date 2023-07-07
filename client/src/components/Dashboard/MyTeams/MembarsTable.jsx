@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-
+ 
 const MembarsTable = ({ userInfo }) => {
   return (
-    <div className=" table-wrapper pb-8 max-w-xl">
-      <table className=" table">
-        <caption className="caption-top my-2">
+    <div className=" table-wrapper pb-8    ">
+      <table className=" table  ">
+        <caption className="caption-top my-2 ">
           Team Membars
         </caption>
         <thead className="bg-purple-300 text-white text-base font-light ">

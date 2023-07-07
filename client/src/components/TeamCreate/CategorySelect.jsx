@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
+
 import AutoSuggestInput from '../shared/AutoSuggestInput';
 
 import { categoryName } from '../../data/category';
+import { useState } from 'react';
 
-const CategorySelect = ({ setCatagoryData }) => {
+const CategorySelect = () => {
     const [results, setResults] = useState();
     const [selectedCategory, setSelectedCategory] = useState("");
   
-    useEffect(() => {
-        if (selectedCategory) setCatagoryData(selectedCategory);
-    }, [selectedCategory]);
+    
 
     const handleChangeCategory = e => {
         const { target } = e;

@@ -1,46 +1,44 @@
 
-import Description from './Description/Description';
-import TitleSelect from './TitleSelect';
-import CategorySelect from './CategorySelect';
 import MembarsAdd from './MembarsAdd/MembarsAdd';
 import { useContext, useEffect, useState } from 'react';
-import Deadline from './Deadline';
 import TeamName from './TeamName';
 import { AuthContext } from '../../context/AuthProvider';
-
-
+import { toast } from 'react-toastify';
 
 const TeamCreate = () => {
-    const [catagorydata, setCatagoryData] = useState("");
-    const [projectTitle, setProjectTitle] = useState("");
-    const [projectDescription, setProjectDescription] = useState([]);
     const [teamName, setTeamName] = useState("");
     const [userNames, setUserNames] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
 
     const [errors, setErrors] = useState("");
 
     const { user } = useContext(AuthContext);
-    const [userName, setUserName] = useState("");
+    const [displayName, setDisplayName] = useState("");
 
-    useEffect( () => {
-        if(user?.displayName)  {
-            setUserName(user.displayName);
+    useEffect(() => {
+        if (user?.displayName) {
+            setDisplayName(user.displayName);
         }
 
     }, [user])
 
+
     const validateForm = () => {
-        if (teamName != "" && userNames) {
+        if (teamName != "" && userNames?.length > 0) {
             setErrors("");
             setTeamName("");
             setUserNames([]);
             return true;
         } else if (!teamName) {
-            setErrors("Please add Team Name");
+            setErrors("Please add Team Name"); 
         }
-        else if (!userNames) {
+        else if (userNames?.length <= 0) {
             setErrors("Please add Membar");
         }
+
+        setTimeout(() => {
+            setErrors("")
+        }, 1500);
 
         return false;
     };
@@ -48,24 +46,18 @@ const TeamCreate = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!validateForm()) return; 
+        if (!validateForm()) return;
 
-        const userInfo =  userNames.map(value => {
-
-            let status = "pending";
-            if(value == userName) status = "accept";
-
-            return {
-                user: value,
-                status
-            }
-        }) 
 
         const team = {
-            teamleader: userName,
+            teamleader: displayName,
             teamName,
-            userInfo
+            userInfo,
+            taskInfo: [],
+            comments: []
         }
+
+        console.log(team)
 
         fetch(`http://localhost:5000/api/v1/teams`, {
             method: "Post",
@@ -77,26 +69,24 @@ const TeamCreate = () => {
             .then(res => res.json())
             .then(inserted => {
                 console.log(inserted)
+                setTeamName("");
+                setUserNames([]);
+                setUserInfo([]); 
+
+                toast.success('Team Created Successfully', { autoClose: 1000 })
 
             })
- 
-        console.log("Form Complete")
+            .catch(error => toast.error(error.message));
+
     };
 
     return (
         <div className="bg-gradient-to-t from-white via-[#E6FFFF] to-white  ">
-            <div className='max-w-[1140px] mx-auto px-6 py-12  '>
-                <h1 className='text-2xl md:text-4xl  text-center '><span className='border-b-2 pb-2 text-secondary border-slate-300'>Create your team</span></h1>
-                <div className='flex justify-center items-center pt-6 pb-12'>
-                    <div className="form-control relative w-[350px] sm:w-[500px] ">
+            <div className='max-w-[1140px] mx-auto px-6    '>
+                <div className='flex justify-center items-center pt-6 pb-12 '>
+                    <div className="form-control relative w-[350px] sm:w-[500px] bg-slate-300 px-6 py-12 rounded-lg ">
+                        <h1 className='text-2xl md:text-4xl  text-center '><span className='border-b-2 pb-2 text-secondary border-slate-300'>Create your team</span></h1>
 
-                        {/* <CategorySelect setCatagoryData={setCatagoryData} />
-
-                        <TitleSelect setProjectTitle={setProjectTitle} />
-
-                        <Description setProjectDescription={setProjectDescription} /> 
-
-                        <Deadline /> */}
 
                         <TeamName
                             teamName={teamName}
@@ -105,20 +95,18 @@ const TeamCreate = () => {
 
                         <MembarsAdd
                             userNames={userNames}
+                            displayName={displayName}
                             setUserNames={setUserNames}
+                            setUserInfo={setUserInfo}
+                            userInfo={userInfo}
                         />
 
-                        {
-                            userNames.length != 0 ?
-                                <div className='mt-12'>
-                                    {errors && <div className="error  ">{errors}</div>}
-                                    {/* <input type="submit" value="ss"   />  */}
-                                    <input type="submit" onClick={handleSubmit} className='btn mt-0 w-full  bg-green-500 hover:bg-secondary/[.6] text-white' value="Create New Project & Team" />
+                        <div className='mt-12'>
+                            {errors && <div className="error  ">{errors}</div>}
 
-                                </div>
-                                :
-                                <></>
-                        }
+                            <input type="submit" onClick={handleSubmit} className='btn mt-0 w-full  bg-green-500 hover:bg-secondary/[.6] text-white' value="Create New Team" />
+
+                        </div>
 
                     </div>
 

@@ -1,42 +1,93 @@
-import React from 'react'
-import { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
+import { toast } from 'react-toastify'
 
 const SignUp = () => {
-  const navigate = useNavigate()
-  const { signUp, getProfile, logOut } = useContext(AuthContext)
+  const { signUp, getProfile } = useContext(AuthContext)
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [existUSers, setExistUSers] = useState([]);
+  const [errors, setErrors] = useState("");
+
+  const from = location?.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    const usersData = async () => {
+      const usersDataLoad = await fetch('http://localhost:5000/api/v1/users/name')
+      const allusers = await usersDataLoad.json()
+
+      if (allusers.data) {
+        let names = [];
+        allusers.data.forEach(element => {
+          names.push(element.name);
+        });
+        setExistUSers(names);
+      }
+    }
+    usersData();
+
+  }, [])
+
+
+  const handleUserName = (e) => {
+    const user = e.target.value;
+
+    setErrors("")
+
+    existUSers.forEach(userName => {
+      if (user == userName) {
+        console.log("object")
+        setErrors("Already exist user name.")
+        return;
+      }
+    })
+ 
+    console.log(user)
+    console.log(existUSers)
+  }
+
   const handleSignUp = event => {
     event.preventDefault();
+
+    if(errors) {
+
+      return
+    }
+
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+
     const profile = {
       name,
       email,
       password
     }
-    console.log(profile)
+
     signUp(email, password)
       .then(res => {
-        const user = res.user;
-        // console.log(user)
+        console.log(res)
         getProfile(name)
           .then(res => {
-            // const user = res.user;
-            console.log(user);
-            // console.log(res);
+            console.log(res)
             saveUserInfo(profile);
-             
-            navigate("/")
+            toast.success('Register Successfully', { autoClose: 1000 })
+
+            navigate(from, { replace: true });
           })
+          .catch(error => toast.error(error.message));
       })
   }
 
   const saveUserInfo = (profile) => {
+
+    profile.skills = [];
+
     fetch(`http://localhost:5000/api/v1/users`, {
-      method: "Post",
+      method: "POST",
       headers: {
         'content-type': 'application/json',
       },
@@ -44,9 +95,11 @@ const SignUp = () => {
     })
       .then(res => res.json())
       .then(inserted => {
+
         console.log(inserted)
 
       })
+      .catch(error => toast.error(error.message));
   }
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -61,7 +114,9 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Username</span>
               </label>
-              <input type="text" name='name' placeholder="username" className="input input-bordered" />
+              <input onChange={handleUserName} type="text" name='name' placeholder="username" className="input input-bordered" />
+
+              {errors && <div className="error my-2"> {errors} </div>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -79,7 +134,6 @@ const SignUp = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              {/* <button className="btn btn-primary">Login</button> */}
               <input type="submit" value="Register" className='btn btn-primary' />
             </div>
           </form>

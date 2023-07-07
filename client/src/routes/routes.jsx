@@ -2,14 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../components/Home/Home";
 import ErrorPage from "../components/shared/ErrorPage";
-import TeamCreate from "../components/TeamCreate/TeamCreate"; 
+import TeamCreate from "../components/TeamCreate/TeamCreate";
 import SignUp from "../components/Authentication/SignUp/SignUp"
 import SignIn from "../components/Authentication/SignIn/SignIn"
-import MyProfile from "../components/Dashboard/MyProfile/MyProfile"; 
+import MyProfile from "../components/Dashboard/MyProfile/MyProfile";
 import Dashboard from "../components/Dashboard/Dashboard";
 import MyTeams from "../components/Dashboard/MyTeams/MyTeams";
 import OthersTeam from "../components/Dashboard/OthersTeam/OthersTeam";
 import TeamDetails from "../components/Dashboard/MyTeams/TeamDetails/TeamDetails";
+import ProtectRoute from "./ProtectRoute";
 
 
 export const router = createBrowserRouter([
@@ -28,12 +29,18 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/teamCreate',
-                element: <TeamCreate />
+                element:
+                    <ProtectRoute>
+                        <TeamCreate />
+                    </ProtectRoute>,
             }
             ,
             {
                 path: '/dashboard',
-                element: <Dashboard />,
+                element:
+                    <ProtectRoute>
+                        <Dashboard />
+                    </ProtectRoute>,
                 children: [
                     {
                         path: '',
@@ -46,7 +53,7 @@ export const router = createBrowserRouter([
                     {
                         path: 'my-teams',
                         element: <MyTeams />
-                    }, 
+                    },
                     {
                         path: 'my-teams/details/:id',
                         element: <TeamDetails />
@@ -54,18 +61,22 @@ export const router = createBrowserRouter([
                     {
                         path: 'others-team',
                         element: <OthersTeam />
+                    },
+                    {
+                        path: 'others-team/details/:id',
+                        element: <TeamDetails />
                     }
                 ]
             },
             {
                 path: "/signUp",
-                element: <SignUp/>
+                element: <SignUp />
             },
             {
                 path: "/signIn",
-                element: <SignIn/>
+                element: <SignIn />
             }
-            
+
         ]
     },
 ])

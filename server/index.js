@@ -18,31 +18,7 @@ connectToServer();
 app.use("/api/v1/users", usersRoutes);
 
 app.use("/api/v1/teams", teamsRoutes);
-
-// app.use("/team/:id", async (req, res, next) => {
-//     try {
-//         const db = getDb();
-//         const { id } = req.params;
  
-//         console.log(id)
-
-//         const team = await db.collection("teams").findOne({ _id: new ObjectId(id)});
-
-//         console.log(" team : ")
-//         console.log(team);
-
-//         if (!team) {
-//             return res.status(400).json({ success: false, error: "Couldn't find a team with this id" });
-//         }
-
-        
-//         res.status(200).json({ success: true, data: team });
-
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
 
 
 app.get('/', (req, res) => {

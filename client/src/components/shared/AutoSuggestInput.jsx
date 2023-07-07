@@ -14,6 +14,14 @@ const AutoSuggestInput = ({
     placeholderlText,
 }) => {
 
+    // console.log(results)
+    // console.log(renderItem)
+    // console.log(onChange)
+    // console.log(handleClick)
+    // console.log(value)
+    // console.log(setValue)
+    // console.log(placeholderlText)
+
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const resultContainer = useRef(null);
     const [showResults, setShowResults] = useState(false);
@@ -94,7 +102,7 @@ const AutoSuggestInput = ({
                 onChange={handleChange}
                 onClick={handleClick}
                 type="text"
-                className='border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-full '
+                className={`   border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-lg `}
                 // className="w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition"
                 placeholder={placeholderlText}
             />

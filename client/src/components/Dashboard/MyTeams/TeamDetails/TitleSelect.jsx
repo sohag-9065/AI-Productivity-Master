@@ -18,11 +18,16 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
     const handleAI = async() => {
         setIsLoading(true);
 
+        let promt = "I want to create a project. Give me a project title. it's will be one sentance.";
+        if(catagorydata) {
+            promt = `I want to create a project. Give me a project title of this ${catagorydata}. it's will be one sentance.`
+        }
+
         try {
             const completion = await openai.createCompletion({
                 model: "text-davinci-003",
-                prompt: `I want to create a team. Just give me a team name. don't give me a special charecteror extra word`,
-                max_tokens: 40,
+                prompt: promt,
+                max_tokens: 200,
                 temperature: 1,
             });
 
@@ -31,7 +36,7 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
             if(result) {
                 setIsLoading(false);
                 setValue(result);
-                console.log(completion?.data?.choices[0]?.text.split('\n').join(''));
+                // console.log(completion?.data?.choices[0]?.text.split('\n').join(''));
             }
 
         } catch (error) {
@@ -56,7 +61,7 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
 
                 <p onClick={handleAI} className={`  cursor-pointer  text-sm mt-1 md:mt-0 ml-1 md:ml-3 py-1 px-3 rounded-full bg-secondary/[.8] hover:bg-secondary/[.6]  text-white flex justify-center items-center  `}>
                     <AiOutlineReload className='mr-2 ' />
-                    Generate with AI
+                    Generate with AI 
                 </p>
 
                 {
@@ -69,7 +74,7 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
                 onChange={handleChange}
                 type="text"
                 className={` border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-full `}
-                placeholder="Enter task title"
+                placeholder="Enter task title Hei"
             />
 
 

@@ -26,8 +26,8 @@ const TeamName = ({ teamName, setTeamName }) => {
                 temperature: 1,
             });
 
-            const result = completion?.data?.choices[0]?.text.split('\n').join('');
-            if(result[0] == '.') result.slice(1);
+            let result = completion?.data?.choices[0]?.text.split('\n').join('');
+            result = result.split('.').join(''); 
             if(result) {
                 setIsLoading(false);
                 setTeamName(result);
@@ -41,6 +41,7 @@ const TeamName = ({ teamName, setTeamName }) => {
     }
 
     const handleNameChange = e => {
+        e.preventDefault();
         setTeamName(e.target.value);
     };
 

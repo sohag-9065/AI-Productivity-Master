@@ -27,7 +27,7 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
 
                 <p onClick={handleAI} className={`  cursor-pointer  text-sm mt-1 md:mt-0 ml-1 md:ml-3 py-1 px-3 rounded-full bg-secondary/[.8] hover:bg-secondary/[.6]  text-white flex justify-center items-center  `}>
                     <AiOutlineReload className='mr-2 ' />
-                    Generate with AI
+                    Generate with AI sad
                 </p>
 
             </div>

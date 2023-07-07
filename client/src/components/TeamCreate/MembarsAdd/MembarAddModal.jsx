@@ -6,7 +6,7 @@ import AutoSuggestInput from "../../shared/AutoSuggestInput";
  
  
 
-const MembarAddModal = ({ userNames, closeModal, onSubmit }) => {
+const MembarAddModal = ({ userNames, closeModal, onSubmit   }) => {
  
 
     const [existUSers, setExistUSers] = useState([]);
@@ -18,7 +18,7 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit }) => {
     useEffect( () => {
         const usersData = async () => {
             const usersDataLoad = await fetch('http://localhost:5000/api/v1/users/name')
-            const allusers = await usersDataLoad.json()
+            const allusers = await usersDataLoad.json() 
 
             if(allusers.data) {
                 let names = [];
@@ -52,6 +52,18 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit }) => {
     }
 
     const validateForm = () => {
+
+        console.log(selectedUsers)
+        console.log(existUSers)
+        console.log(userNames)
+
+        for (const userName of userNames) {
+            if (userName == selectedUsers) {
+                setErrors("Already added");
+                return false;
+            }
+        }
+
         for (const userName of existUSers) {
             if (userName == selectedUsers) {
                 setErrors("");
@@ -59,6 +71,7 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit }) => {
             }
         }
 
+        
         setErrors("valid user");
         return false;
     };

@@ -1,17 +1,55 @@
 /* eslint-disable react/prop-types */
 
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import MembarsAddTable from './MembarsAddTable';
 import MembarAddModal from './MembarAddModal';
 
-const MembarsAdd = ({ userNames, setUserNames }) => {
+const MembarsAdd = ({ userNames, displayName, setUserNames, userInfo, setUserInfo }) => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [allUserInfo, setAllUserInfo] = useState([]);
+
+    useEffect(() => {
+        const usersData = async () => {
+            const usersDataLoad = await fetch('http://localhost:5000/api/v1/users')
+            const allusers = await usersDataLoad.json()
+            setAllUserInfo(allusers.data);
+
+
+        }
+        usersData();
+    }, [])
 
     const handleDeleteUser = (targetIndex) => {
         setUserNames(userNames.filter((_, idx) => idx !== targetIndex));
     };
 
-    const handleSubmit = newRow => setUserNames([...userNames, newRow]);
+    const handleSubmit = newRow => {
+        setUserNames([...userNames, newRow])
+ 
+
+        allUserInfo.forEach(userdetail => {
+
+            let status = 'pending';
+
+            if (displayName == newRow) status = 'accept';
+
+            if (userdetail.name == newRow) {
+
+                setUserInfo([
+                    ...userInfo,
+                    {
+                        user: newRow,
+                        skills: userdetail.skills,
+                        status
+                    }
+                ])
+
+
+            }
+        })
+
+
+    }; 
 
 
     return (

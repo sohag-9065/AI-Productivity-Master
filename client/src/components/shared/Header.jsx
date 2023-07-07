@@ -2,7 +2,10 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from 'react-icons/ai';
-import { AuthContext } from '../../context/AuthProvider'
+import { AuthContext } from '../../context/AuthProvider';
+import {   toast } from 'react-toastify';
+
+
 
 const headersItem = [
     {
@@ -14,11 +17,7 @@ const headersItem = [
         name: "Team Create"
     },
     {
-        route: "/blog",
-        name: "Blog"
-    },
-    {
-        route: "/dashboard/my-profile",
+        route: "/dashboard/my-teams",
         name: "Dashboard"
     }
 ]
@@ -28,10 +27,12 @@ const Header = () => {
 
     const [toggle, setToggle] = useState(false);
     const { user, getProfile, logOut } = useContext(AuthContext)
- 
 
- 
-
+    const handleLogout = () => {
+        logOut();
+        toast.success('LogOut Successfully', { autoClose: 1000 })
+    }
+  
     const navMenu = <>
         {
             headersItem.map((header, index) => <NavLink
@@ -48,7 +49,7 @@ const Header = () => {
 
         {
             user ?
-                <NavLink  onClick={ () => logOut()}  className=  ' text-slate-600 hover:text-third'  > SingOut </NavLink>
+                <NavLink  onClick={ handleLogout}  className=  ' text-slate-600 hover:text-third'  > Logout </NavLink>
 
                 :
 
@@ -63,9 +64,8 @@ const Header = () => {
     </>
     return (
         <div className="bg-gradient-to-t from-white to-[#E6FFFF]">
-            <div className="max-w-[1140px]   mx-auto  ">
-
-
+            <div className="max-w-[1140px]   mx-auto  "> 
+ 
                 <div className="  md:hidden  px-6 sm:px-16 md:px-6   py-2  items-center">
                     <div className="sm:flex sm:gap-10 justify-between  text-black/[.5]">
                         <div>
