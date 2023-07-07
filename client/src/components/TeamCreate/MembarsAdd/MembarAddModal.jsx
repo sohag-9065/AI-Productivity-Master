@@ -65,14 +65,14 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit   }) => {
         }
 
         for (const userName of existUSers) {
-            if (userName == selectedUsers) {
+            if (userName?.toLowerCase() == selectedUsers?.toLowerCase()) {
                 setErrors("");
                 return true;
             }
         }
 
         
-        setErrors("valid user");
+        setErrors("Please added valid user");
         return false;
     };
  
@@ -110,7 +110,7 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit   }) => {
  
                     </div>
 
-                    {errors && <div className="error">{`Please include: ${errors}`}</div>}
+                    {errors && <div className="error"> {errors}</div>}
 
                     <button type="submit" className="w-full bg-secondary/[.9] hover:bg-secondary/[.7] cursor-pointer  text-white px-5  font-medium   py-3 rounded-full " onClick={handleSubmit}>
                         Add Membar

@@ -10,16 +10,23 @@ const AuthProvider = ({children}) => {
     const auth = getAuth(app)
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+
     const signUp = (email,password)=>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
+
     const signIn=(email,password)=>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth,email,password)
     }
+
     const getProfile=(displayName)=>{
+        setLoading(true);
         return updateProfile(auth.currentUser,{displayName:displayName})
     }
     const logOut =()=>{
+        setLoading(true);
         return signOut(auth)
     }
     useEffect(()=>{
@@ -30,7 +37,7 @@ const AuthProvider = ({children}) => {
         return ()=>{
             unsubscribe()
         };
-    },[auth]);
+    },[loading, auth]);
 
     const info={
         user,

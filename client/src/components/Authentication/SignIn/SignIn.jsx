@@ -3,9 +3,10 @@ import { useContext, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
 import { toast } from 'react-toastify'
+import Loading from '../../shared/Loading'
 
 const SignIn = () => {
-  const { user, signIn } = useContext(AuthContext)
+  const { user, signIn, loading } = useContext(AuthContext)
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +21,12 @@ const SignIn = () => {
     }
 
 }, [user , from, navigate]);
+
+if(loading) {
+  console.log(loading)
+  return <Loading />
+}
+
 
   const handleSignIn = event => {
 

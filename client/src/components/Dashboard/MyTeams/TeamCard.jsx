@@ -22,7 +22,11 @@ const TeamCard = ({ userName, team }) => {
             }
         });
 
-    }, [userName, userInfo]);
+        if(teamleader ==  userName ) {
+            setUserStatus("accept")
+        }
+
+    }, [userName, userInfo, teamleader]);
 
 
     const handleAccept = () => {

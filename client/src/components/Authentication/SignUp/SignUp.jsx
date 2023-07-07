@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthProvider'
 import { toast } from 'react-toastify'
 
+import Loading from '../../shared/Loading'
+
 const SignUp = () => {
-  const { signUp, getProfile } = useContext(AuthContext)
+  const { signUp, getProfile , loading} = useContext(AuthContext)
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,6 +32,10 @@ const SignUp = () => {
 
   }, [])
 
+  if(loading) {
+    return <Loading />
+  }
+
 
   const handleUserName = (e) => {
     const user = e.target.value;
@@ -37,7 +43,7 @@ const SignUp = () => {
     setErrors("")
 
     existUSers.forEach(userName => {
-      if (user == userName) {
+      if (user?.toLowerCase() == userName?.toLowerCase()) {
         console.log("object")
         setErrors("Already exist user name.")
         return;
@@ -84,7 +90,7 @@ const SignUp = () => {
 
   const saveUserInfo = (profile) => {
 
-    profile.skills = [];
+    profile.skills = "";
 
     fetch(`http://localhost:5000/api/v1/users`, {
       method: "POST",

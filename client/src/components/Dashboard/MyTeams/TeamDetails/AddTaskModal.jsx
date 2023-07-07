@@ -21,7 +21,7 @@ const AddTaskModal = ({ closeModal, onSubmit }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (taskTitle && userAssign) {
+        if (taskTitle && userAssign?.length > 0 && taskDescription != "") {
             const taskInfo = {
                 taskTitle,
                 taskDescription,
