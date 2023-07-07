@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import AutoSuggestInput from '../shared/AutoSuggestInput';
-import { useEffect, useState } from 'react';
+
 import { AiOutlineReload } from "react-icons/ai";
 
  
-const TitleSelect = ({ catagorydata, value, setValue }) => {
+const TitleSelect = ({ value, setValue }) => {
 
     const handleAI = () => {
         

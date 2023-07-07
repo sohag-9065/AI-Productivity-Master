@@ -18,8 +18,7 @@ const connectToServer = async () => {
 }
 
 
-const getDb =   () => { 
-  
+const getDb =   () => {  
     
     dbConnection =  conn.db("ai-master"); 
 
@@ -27,7 +26,5 @@ const getDb =   () => {
   
 }
 
-
  
-
 module.exports  = {connectToServer, getDb };

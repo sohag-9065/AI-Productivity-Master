@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -27,8 +28,6 @@ const ProgressModal = ({ value, setVAlue, closeModal, onSubmit }) => {
     }
     const handkeProgrsstionUpdate = (e) => {
         e.preventDefault();
-        console.log(value)
-
 
         onSubmit();
         closeModal();

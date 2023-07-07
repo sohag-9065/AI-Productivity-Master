@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import {useLocation,Navigate} from 'react-router-dom'

@@ -14,13 +14,6 @@ const AutoSuggestInput = ({
     placeholderlText,
 }) => {
 
-    // console.log(results)
-    // console.log(renderItem)
-    // console.log(onChange)
-    // console.log(handleClick)
-    // console.log(value)
-    // console.log(setValue)
-    // console.log(placeholderlText)
 
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const resultContainer = useRef(null);
