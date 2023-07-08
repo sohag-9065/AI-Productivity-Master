@@ -7,10 +7,10 @@ import SignUp from "../components/Authentication/SignUp/SignUp"
 import SignIn from "../components/Authentication/SignIn/SignIn"
 import MyProfile from "../components/Dashboard/MyProfile/MyProfile";
 import Dashboard from "../components/Dashboard/Dashboard";
-import MyTeams from "../components/Dashboard/MyTeams/MyTeams";
-import OthersTeam from "../components/Dashboard/OthersTeam/OthersTeam";
-import TeamDetails from "../components/Dashboard/MyTeams/TeamDetails/TeamDetails";
+import MyTeams from "../components/Dashboard/MyTeams/MyTeams"; 
+import TeamDetails from "../components/Dashboard/TeamDetails/TeamDetails";
 import ProtectRoute from "./ProtectRoute";
+import InvitedTeams from "../components/Dashboard/InvitedTeams/InvitedTeams";
 
 
 export const router = createBrowserRouter([
@@ -59,11 +59,11 @@ export const router = createBrowserRouter([
                         element: <TeamDetails />
                     },
                     {
-                        path: 'others-team',
-                        element: <OthersTeam />
+                        path: 'invited-teams',
+                        element: <InvitedTeams/>
                     },
                     {
-                        path: 'others-team/details/:id',
+                        path: 'invited-teams/details/:id',
                         element: <TeamDetails />
                     }
                 ]

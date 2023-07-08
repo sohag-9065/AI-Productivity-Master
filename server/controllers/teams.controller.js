@@ -10,7 +10,8 @@ module.exports.getAllTeams = async (req, res, next) => {
 
         let teams = await db
             .collection("teams")
-            .find(query).toArray();
+            .find(query)
+            .toArray();
 
         res.status(200).json({ success: true, data: teams });
     } catch (error) {

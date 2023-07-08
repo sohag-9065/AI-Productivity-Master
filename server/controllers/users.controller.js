@@ -22,17 +22,18 @@ module.exports.getAllUsers = async (req, res, next) => {
 };
 
 module.exports.getAllUsersName = async (req, res, next) => {
-  try {
-
+  try { 
     const db = getDb();
-
-    const user = await db
+ 
+    const allUsersNameOfObject = await db
       .collection("users")
       .find()
       .project({ name: 1, _id: 0 })
       .toArray();
+  
+      let allUsersName =  allUsersNameOfObject.map(element => element.name); 
 
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({ success: true, data: allUsersName });
   } catch (error) {
     next(error);
   }

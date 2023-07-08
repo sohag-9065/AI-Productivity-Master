@@ -3,69 +3,23 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from 'react-icons/ai';
 import { AuthContext } from '../../context/AuthProvider';
-import {   toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { headersNavItems } from "../../data/headerNavItems";
+import HeaderNavMenu from "./HeaderNavMenu";
 
-
-
-const headersItem = [
-    {
-        route: "/home",
-        name: "Home"
-    },
-    {
-        route: "/teamCreate",
-        name: "Team Create"
-    },
-    {
-        route: "/dashboard/my-teams",
-        name: "Dashboard"
-    }
-]
 
 
 const Header = () => {
 
+
     const [toggle, setToggle] = useState(false);
     const { user, getProfile, logOut } = useContext(AuthContext)
 
-    const handleLogout = () => {
-        logOut();
-        toast.success('LogOut Successfully', { autoClose: 1000 })
-    }
-  
-    const navMenu = <>
-        {
-            headersItem.map((header, index) => <NavLink
-                key={index}
-                to={header.route}
-                className={({ isActive }) => isActive ?
-                    'text-secondary hover:text-third'
-                    :
-                    ' text-slate-600 hover:text-third'}
-            >
-                {header.name}
-            </NavLink>)
-        }
-
-        {
-            user ?
-                <NavLink  onClick={ handleLogout}  className=  ' text-slate-600 hover:text-third'  > Logout </NavLink>
-
-                :
-
-                <>
-                    <NavLink to="/signIn" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'} > Login </NavLink>
-                    <NavLink to="/signUp" className={({ isActive }) => isActive ? 'text-secondary hover:text-third' : ' text-slate-600 hover:text-third'} > Register </NavLink>
-                </>
-
-        }
-
-
-    </>
+ 
     return (
         <div className="bg-gradient-to-t from-white to-[#E6FFFF]">
-            <div className="max-w-[1140px]   mx-auto  "> 
- 
+            <div className="max-w-[1140px]   mx-auto  ">
+
                 <div className="  md:hidden  px-6 sm:px-16 md:px-6   py-2  items-center">
                     <div className="sm:flex sm:gap-10 justify-between  text-black/[.5]">
                         <div>
@@ -84,7 +38,8 @@ const Header = () => {
                     {
                         toggle &&
                         <div className=" flex flex-col  gap-5 py-3" onClick={() => setToggle(!toggle)}>
-                            {navMenu}
+                            {/* {navMenu} */}
+                            <HeaderNavMenu />
                         </div>
                     }
 
@@ -99,7 +54,7 @@ const Header = () => {
                     </div>
 
                     <div className=" flex  gap-10 text-lg" onClick={() => setToggle(false)}>
-                        {navMenu}
+                        <HeaderNavMenu />
                     </div>
 
                 </div>

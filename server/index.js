@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const usersRoutes = require("./routes/v1/users.route");
 const teamsRoutes = require("./routes/v1/teams.route");
+const titlesRoutes = require("./routes/v1/titles.route");
 const errorHandler = require("./middleware/errorHandler");
 const { connectToServer, getDb } = require("./utils/dbConnect");
 const { ObjectId } = require('mongodb');
@@ -18,6 +19,8 @@ connectToServer();
 app.use("/api/v1/users", usersRoutes);
 
 app.use("/api/v1/teams", teamsRoutes);
+
+app.use("/api/v1/titles", titlesRoutes);
  
 
 
@@ -35,3 +38,11 @@ app.listen(port, () => {
     console.log(`AI Master app listening on port ${port}`)
 })
 
+process.once('SIGUSR2', function () {
+    process.kill(process.pid, 'SIGUSR2');
+  });
+  
+  process.on('SIGINT', function () {
+    // this is only called on ctrl+c, not restart
+    process.kill(process.pid, 'SIGINT');
+  });

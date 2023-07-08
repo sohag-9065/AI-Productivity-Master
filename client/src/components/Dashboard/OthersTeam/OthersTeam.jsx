@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthProvider";
-import TeamCard from "../MyTeams/TeamCard";
+import { AuthContext } from "../../../context/AuthProvider"; 
 import { toast } from "react-toastify";
+import TeamCard from "../TeamCard/TeamCard";
 
 
 const OthersTeam = () => {

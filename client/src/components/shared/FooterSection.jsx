@@ -9,15 +9,36 @@ import { LuCalendarDays } from 'react-icons/lu';
 import { MdPhoneEnabled } from 'react-icons/md';
 
 
-BsArrowRightShort
 
 import blog1 from '../../assets/blog/blog1.webp';
 import blog2 from '../../assets/blog/blog2.webp';
+import { questions } from '../../data/footer';
+
 
 
 const FooterSection = () => {
+
+    const icons = [BsArrowRightShort, BsTwitter, BsInstagram];
+
+    const iconStyle = {
+        color: 'red',
+        fontSize: '24px',
+        // Add any other styles you want to apply to the icons
+    };
+
+    console.log(questions)
     return (
         <div className="bg-foot py-20">
+ 
+                {
+                    icons.map((IconComponent, index) => (
+                        <IconComponent key={index} style={iconStyle} />
+                    ))
+                }
+ 
+            {
+                questions[0].icon("text-red-500")
+            }
             <div className="grid md:grid-cols-4 gap-8 p-6 md:p-2 max-w-[1140px]   mx-auto  text-white ">
                 <div className=" pr-2">
 

@@ -19,8 +19,8 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu  flex-nowrap scroll-auto   p-4 w-80 h-full bg-purple-300 text-xl gap-4 text-base-content ">
                    
-                    <NavLink  to="my-teams" className={({ isActive }) => isActive ?  'bg-[#7535ad] text-white p-2 rounded-lg'  :  ' text-slate-700 hover:text-third p-2 rounded-lg'} > Created Teams </NavLink>
-                    <NavLink  to="others-team" className={({ isActive }) => isActive ?  'bg-[#7535ad] text-white p-2 rounded-lg'  :  ' text-slate-700 hover:text-third p-2 rounded-lg'} > Invited Teams </NavLink>
+                    <NavLink  to="my-teams" className={({ isActive }) => isActive ?  'bg-[#7535ad] text-white p-2 rounded-lg'  :  ' text-slate-700 hover:text-third p-2 rounded-lg'} > My Teams </NavLink>
+                    <NavLink  to="invited-teams" className={({ isActive }) => isActive ?  'bg-[#7535ad] text-white p-2 rounded-lg'  :  ' text-slate-700 hover:text-third p-2 rounded-lg'} > Invited Teams </NavLink>
                     <NavLink  to="my-profile" className={({ isActive }) => isActive ?  'bg-[#7535ad] text-white p-2 rounded-lg'  :  ' text-slate-700 hover:text-third p-2 rounded-lg'} > My Profile </NavLink>
 
                 </ul>
