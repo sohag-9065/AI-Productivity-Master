@@ -7,6 +7,8 @@
 
 * openai 
 * React
+* React-Query
+* Context API
 * react-slick
 * react-toastify"
 * react-icons 
@@ -19,6 +21,7 @@
 
 * Node 
 * ExpressJs 
+* Folllow MVC Pattern
 * cors
 * dotenv
 
