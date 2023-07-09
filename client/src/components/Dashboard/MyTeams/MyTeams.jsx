@@ -6,8 +6,7 @@ import Loading from "../../shared/Loading";
 
 
 const MyTeams = () => {
-
-
+ 
     const { userName } = useContext(AuthContext);
 
     const { data: myTeams, isLoading, refetch } = useQuery('teamsmy', () =>
