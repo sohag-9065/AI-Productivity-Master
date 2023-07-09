@@ -1,55 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { AiOutlineReload } from "react-icons/ai";
-import { Configuration, OpenAIApi } from 'openai'; 
+import { AiOutlineReload } from "react-icons/ai"; 
 import Loading from "../../../../../shared/Loading";
+import taskPrirityGenerate from "../../../../../../promptEngineer/taskPrirityGenerate";
+
 const PrioritySet = ({ taskTitle, taskDescription, taskPriority, setTaskPriority }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+ 
 
-    const configuration = new Configuration({
-        apiKey: import.meta.env.VITE_CHAT_GPT_API_KEY,
-    });
+    const handleAI =  () => {
 
-    const openai = new OpenAIApi(configuration);
-
-    const handleAI = async () => {
-        setIsLoading(true);
-
-        let promt = `I created a task. This is the '${taskTitle}' task title and this is the ${taskDescription} task description . Give me a task priority level. it will be between 1 to 5 intiger value . just give me a intiger number. don't provide any word or new line`;
-
-
-        try {
-            const completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: promt,
-                max_tokens: 3,
-                temperature: 1,
-            });
-
-            const result = completion?.data?.choices[0]?.text;
-
-            if (result) {
-
-                let level = result[result.length - 1];
-
-                if (level >= '1' && level <= 5) {
-                    console.log(level)
-                    setIsLoading(false);
-                    setTaskPriority(level);
-                    setErrorMessage("");
-                }
-                else {
-                    console.log("recall: " + result)
-                    handleAI();
-                }
-
-            }
-
-        } catch (error) {
-            setIsLoading(false);
-            console.error('Error:', error.message);
-        }
+        taskPrirityGenerate(taskTitle, taskDescription,  setTaskPriority, setIsLoading, handleAI);
+         
     }
 
     const handPriorityChange = event => {

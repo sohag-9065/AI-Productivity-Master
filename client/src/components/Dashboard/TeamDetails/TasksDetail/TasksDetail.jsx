@@ -1,18 +1,17 @@
- /* eslint-disable react/prop-types */
-import { AiTwotoneFileAdd } from 'react-icons/ai'; 
-import { useContext, useEffect, useState } from 'react'; 
+/* eslint-disable react/prop-types */
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
 import TaskDetail from './TaskDetail/TaskDetail';
-import AddTaskModal from '../AddTask/AddTaskModal/AddTaskModal';
+import AddTask from '../AddTask/AddTask';
 
-const TasksDetail = ({ teamleader,   taskInfo, modalOpen, setModalOpen, handleSubmit }) => {
+const TasksDetail = ({ teamleader, taskInfo, modalOpen, setModalOpen, handleSubmit }) => {
     const { user } = useContext(AuthContext);
-    const [userName, setUserName] = useState(""); 
+    const [userName, setUserName] = useState("");
 
     useEffect(() => {
         if (user?.displayName) {
             const name = user?.displayName;
-            setUserName(name);  
+            setUserName(name);
         }
 
     }, [user]);
@@ -47,23 +46,18 @@ const TasksDetail = ({ teamleader,   taskInfo, modalOpen, setModalOpen, handleSu
             </div>
 
             {
-                teamleader == userName  && 
-                <div className="flex justify-center mt-4">
-                    <p onClick={() => setModalOpen(true)} className=" flex items-center gap-4 transition  duration-300  hover:delay-100 cursor-pointer bg-secondary text-white  hover:bg-secondary/[.8]    px-5 py-3 rounded-full text-center  mt-4 ">
-                        Add New Task
-                        <AiTwotoneFileAdd className='text-2xl' />
-                    </p>
-                </div>
+                teamleader == userName && (
+                    <AddTask
+                        modalOpen={modalOpen}
+                        setModalOpen={setModalOpen}
+                        handleSubmit={handleSubmit}
+                    />
+                )
+
+
             }
 
-            {modalOpen && (
-                <AddTaskModal
-                    closeModal={() => {
-                        setModalOpen(false);
-                    }}
-                    onSubmit={handleSubmit}
-                />
-            )}
+
         </div>
     );
 };

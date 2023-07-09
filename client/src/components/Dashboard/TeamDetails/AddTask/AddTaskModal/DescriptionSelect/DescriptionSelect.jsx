@@ -1,79 +1,47 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import { AiOutlineReload } from "react-icons/ai";
-import { Configuration, OpenAIApi } from 'openai'; 
+import { useEffect, useState } from 'react';  
 import Loading from '../../../../../shared/Loading';
-const DescriptionSelect = ({ taskTitle, value, setValue }) => {
+import { AiOutlineReload } from 'react-icons/ai';
+import taskDescriptionGenerate from '../../../../../../promptEngineer/taskDescriptionGenerate';
+const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (taskTitle) {
-            console.log(" task selected")
-            setError("")
-        }
-
-    }, [taskTitle])
-
-    const configuration = new Configuration({
-        apiKey: import.meta.env.VITE_CHAT_GPT_API_KEY,
-    });
-
-    const openai = new OpenAIApi(configuration);
+        if (taskTitle) setError(""); 
+    }, [taskTitle]); 
 
     const handleAI = async () => {
+
         if (!taskTitle) {
             setError("Complete task tilte first")
             return;
         }
-        setError("")
-        setIsLoading(true);
 
-        let promt = `I created a task. This is the '${taskTitle}' task title. Give me a short description about the task `;
+        taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
 
-        try {
-            const completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: promt,
-                max_tokens: 1000,
-                temperature: 1,
-            });
-
-            const result = completion?.data?.choices[0]?.text.split('\n').join('');
-            if (result[0] == '.') result.slice(1);
-            if (result) {
-                setIsLoading(false);
-                setValue(result);
-                // console.log(completion?.data?.choices[0]?.text.split('\n').join(''));
-            }
-
-        } catch (error) {
-            setIsLoading(false);
-            console.error('Error:', error.message);
-        }
-    }
-
-
+        setError("") ;
+    } 
 
     const handleChange = e => {
         const { target } = e;
 
         if (!taskTitle) {
-            setValue("");
+            setTaskDescription("");
             setError("Complete task tilte first")
             return;
         }
-        setError("")
-        setValue(target.value);
+
+        setError("");
+        
+        setTaskDescription(target.value);
     };
 
     const handleDescriptionClick = () => {
-        setValue(taskTitle)
+        // setTaskDescription(taskTitle)
         console.log("click")
     }
-
-
 
     return (
         <div>
@@ -93,19 +61,16 @@ const DescriptionSelect = ({ taskTitle, value, setValue }) => {
                     isLoading && <Loading />
                 }
 
-
             </div>
 
             <textarea
-                value={value}
+                value={taskDescription}
                 onChange={handleChange}
                 type="text"
                 onClick={handleDescriptionClick}
                 className={` ${taskTitle ? " " : "cursor-not-allowed"} border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-lg `}
-                placeholder="Enter task Description"
+                placeholder="Enter Task Description"
             />
-
-
 
         </div>
     );

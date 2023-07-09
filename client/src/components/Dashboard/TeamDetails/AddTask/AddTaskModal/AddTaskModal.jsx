@@ -10,6 +10,7 @@ import DeadlineSet from './DeadlineSet/DeadlineSet';
 import MembarAssign from './MembarAssign/MembarAssign';
 
 const AddTaskModal = ({ closeModal, onSubmit }) => {
+    
     const [error, setError] = useState("");
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
@@ -46,15 +47,15 @@ const AddTaskModal = ({ closeModal, onSubmit }) => {
     };
     return (
         <div className=" modal-container  overflow-y-auto "  >
-            <div className="moda absolute  top-8  w-[350px] sm:w-[500px] bg-gradient-to-t from-[#E6FFFF] via-white to-[#E6FFFF]">
+            <div className="moda absolute  top-4  w-[350px] sm:w-[500px] bg-gradient-to-t from-[#E6FFFF] via-white to-[#E6FFFF]">
                 <RxCross2 className="absolute top-2 right-3 text-xl font-bold cursor-pointer " onClick={closeModal} />
                 <form>
 
                     <CategorySelect />
 
-                    <TitleSelect catagorydata={"catagorydata"} value={taskTitle} setValue={setTaskTitle} />
+                    <TitleSelect catagorydata={"catagorydata"} taskTitle={taskTitle} setTaskTitle={setTaskTitle} />
 
-                    <DescriptionSelect taskTitle={taskTitle} value={taskDescription} setValue={setTaskDescription} />
+                    <DescriptionSelect taskTitle={taskTitle} taskDescription={taskDescription} setTaskDescription={setTaskDescription} />
 
                     <PrioritySet taskTitle={taskTitle} taskDescription={taskDescription} taskPriority={taskPriority} setTaskPriority={setTaskPriority} />
 

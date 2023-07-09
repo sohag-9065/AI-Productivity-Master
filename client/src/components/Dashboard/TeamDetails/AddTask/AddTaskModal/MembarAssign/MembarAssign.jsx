@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { AiOutlineReload } from "react-icons/ai"; 
-import { Configuration, OpenAIApi } from 'openai';
+import { AiOutlineReload } from "react-icons/ai";  
 
 import { useParams } from 'react-router-dom'; 
 import Loading from '../../../../../shared/Loading';
 import AutoSuggestInput from '../../../../../shared/AutoSuggestInput';
+import MembarAssignWithAI from '../../../../../../promptEngineer/MembarAssignWithAI';
 
 const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign }) => {
 
@@ -26,11 +26,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
 
     }, [taskTitle])
 
-    const configuration = new Configuration({
-        apiKey: import.meta.env.VITE_CHAT_GPT_API_KEY,
-    });
-
-    const openai = new OpenAIApi(configuration);
+ 
 
     useEffect(() => {
         const usersData = () => {
@@ -89,37 +85,8 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
             return;
         }
         setError("")
-        setIsLoading(true);
 
-        let promt = `I created a task. Task title is ${taskTitle} . And 'Task description is ${taskDescription}. ${userInfoString}. who is the best for this task. just give the employee name. don't give extra word. you don't give me a extra charecter.`;
-
-        try {
-            const completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: promt,
-                max_tokens: 30,
-                temperature: 1,
-            });
-
-            let result = completion?.data?.choices[0]?.text.split('\n').join('');
-            result = result.split('.').join('');
-            if (result) {
-
-                allUsers?.forEach(user => {
-                    if (result.includes(user)) {
-
-                        setUserAssign(user);
-                    }
-                })
-
-                setIsLoading(false);
-                // console.log(completion?.data?.choices[0]?.text.split('\n').join(''));
-            }
-
-        } catch (error) {
-            setIsLoading(false);
-            console.error('Error:', error.message);
-        }
+        MembarAssignWithAI(taskTitle, taskDescription, userInfoString, allUsers, setUserAssign, setIsLoading)
     }
 
 

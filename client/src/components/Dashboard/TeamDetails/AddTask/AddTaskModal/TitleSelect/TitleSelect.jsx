@@ -1,54 +1,23 @@
 /* eslint-disable react/prop-types */
   
-import { AiOutlineReload } from "react-icons/ai";
-import { Configuration, OpenAIApi } from 'openai';
+import { AiOutlineReload } from "react-icons/ai"; 
 import { useState } from "react"; 
 import Loading from "../../../../../shared/Loading";
+import taskTitleGenerate from "../../../../../../promptEngineer/taskTitleGenerate";
 
  
-const TitleSelect = ({ catagorydata, value, setValue }) => {
+const TitleSelect = ({ catagorydata, taskTitle, setTaskTitle }) => {
     const [isLoading, setIsLoading] = useState(false);
+ 
+    const handleAI =  () => { 
 
-    const configuration = new Configuration({
-        apiKey: import.meta.env.VITE_CHAT_GPT_API_KEY,
-    });
-
-    const openai = new OpenAIApi(configuration);
-
-    const handleAI = async() => {
-        setIsLoading(true);
-
-        let promt = "I want to create a project. Give me a project title. it's will be one sentance.";
-        if(catagorydata) {
-            promt = `I want to create a project. Give me a project title of this ${catagorydata}. it's will be one sentance.`
-        }
-
-        try {
-            const completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: promt,
-                max_tokens: 200,
-                temperature: 1,
-            });
-
-            const result = completion?.data?.choices[0]?.text.split('\n').join('');
-            if(result[0] == '.') result.slice(1);
-            if(result) {
-                setIsLoading(false);
-                setValue(result);
-                // console.log(completion?.data?.choices[0]?.text.split('\n').join(''));
-            }
-
-        } catch (error) {
-            setIsLoading(false);
-            console.error('Error:', error.message); 
-        }
+         taskTitleGenerate(catagorydata, setTaskTitle, setIsLoading) 
     }
 
 
     const handleChange = e => {
         const { target } = e;
-        setValue(target.value);
+        setTaskTitle(target.value);
     };
 
 
@@ -70,11 +39,11 @@ const TitleSelect = ({ catagorydata, value, setValue }) => {
 
             </div>
             <input
-                value={value}
+                value={taskTitle}
                 onChange={handleChange}
                 type="text"
                 className={` border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-full `}
-                placeholder="Enter task title Hei"
+                placeholder="Enter task title"
             />
 
 
