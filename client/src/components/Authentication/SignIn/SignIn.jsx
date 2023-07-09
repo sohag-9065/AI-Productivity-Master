@@ -28,7 +28,11 @@ const SignIn = () => {
   }, [user, from, navigate]);
 
   if (loading || loadingUser) {
-    return <Loading />
+    return (
+      <div className='h-screen'>
+        <Loading />
+      </div>
+    )
   }
 
   const onSubmit = () => { 

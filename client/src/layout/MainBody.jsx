@@ -2,8 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/shared/Header";
 import FooterSection from "../components/shared/FooterSection"; 
 
- 
-const Main = () => {
+const MainBody = () => {
     return (
         <div>
             <Header />  
@@ -14,4 +13,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default MainBody;

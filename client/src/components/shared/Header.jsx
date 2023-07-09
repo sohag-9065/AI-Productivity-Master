@@ -10,11 +10,8 @@ import HeaderNavMenu from "./HeaderNavMenu";
 
 
 const Header = () => {
-
-
-    const [toggle, setToggle] = useState(false);
-    const { user, getProfile, logOut } = useContext(AuthContext)
-
+ 
+    const [toggle, setToggle] = useState(false); 
  
     return (
         <div className="bg-gradient-to-t from-white to-[#E6FFFF]">

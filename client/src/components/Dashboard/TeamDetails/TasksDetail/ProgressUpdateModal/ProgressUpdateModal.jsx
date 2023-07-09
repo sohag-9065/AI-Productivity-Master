@@ -4,11 +4,11 @@ import { RxCross2 } from 'react-icons/rx';
 
 const ProgressUpdateModal = ({ value, setVAlue, closeModal, onSubmit }) => {
 
-    const [error, setError] = useState("");
+    const [error, setError] = useState(""); 
 
     const handleProgressChange = (e) => {
         e.preventDefault();
-
+  
         const upValue = parseInt(e.target.value);
 
         if(upValue > 100 ) {
@@ -28,6 +28,7 @@ const ProgressUpdateModal = ({ value, setVAlue, closeModal, onSubmit }) => {
     }
     const handkeProgrsstionUpdate = (e) => {
         e.preventDefault();
+ 
 
         onSubmit();
         closeModal();
@@ -43,7 +44,7 @@ const ProgressUpdateModal = ({ value, setVAlue, closeModal, onSubmit }) => {
                     <input
                         value={value}
                         onChange={handleProgressChange}
-                        type="text"
+                        type="number"
                         className='border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-3 rounded-full '
                     />
 

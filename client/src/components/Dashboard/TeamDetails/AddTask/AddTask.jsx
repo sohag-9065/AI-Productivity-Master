@@ -2,8 +2,18 @@
 
 import { AiTwotoneFileAdd } from 'react-icons/ai';
 import AddTaskModal from './AddTaskModal/AddTaskModal';
+import { useContext } from 'react';
+import { SingleTaskContext } from '../../../../context/SingleTaskProvider';
 
-const AddTask = ({ modalOpen, setModalOpen, handleSubmit }) => {
+const AddTask = () => {
+
+    const {
+        modalOpen,
+        setModalOpen,
+        handleSubmit
+    } = useContext(SingleTaskContext);
+  
+
     return (
         <div>
             <div className="flex justify-center mt-4">

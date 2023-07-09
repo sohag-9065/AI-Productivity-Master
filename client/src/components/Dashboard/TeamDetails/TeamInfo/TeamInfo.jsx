@@ -1,8 +1,16 @@
 /* eslint-disable react/prop-types */
+
+import { useContext } from "react"; 
+import { SingleTaskContext } from "../../../../context/SingleTaskProvider";
+
+  
+const TeamInfo  = () => {
+
+  const { membarsInfo } = useContext(SingleTaskContext);  
  
-const TeamInfo  = ({ userInfo, classAdd = "" }) => {
+
     return (
-      <div className={`table-wrapper pb-8 ${classAdd}`}>
+      <div className={`table-wrapper pb-8 w-[350px] lg:w-[600px] overflow-y-auto h-[320px] px-4`}>
         <table className=" table  ">
           <caption className="caption-top my-2 ">
             Team Membars
@@ -15,13 +23,13 @@ const TeamInfo  = ({ userInfo, classAdd = "" }) => {
             </tr>
           </thead>
           <tbody>
-            {userInfo?.map((user, idx) => {
+            {membarsInfo?.map((membar, idx) => {
   
               return (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
-                  <td className="expand w-[80%]">{user.user}</td>
-                  <td className="expand">{user.status}</td>
+                  <td className="expand w-[80%]">{membar.user}</td>
+                  <td className="expand">{membar.status}</td>
   
   
                 </tr>

@@ -10,6 +10,7 @@ module.exports.getAllUsers = async (req, res, next) => {
 
     const query = req.query;
 
+    console.log("users")
     console.log(query)
 
     const user = await db

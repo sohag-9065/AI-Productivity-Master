@@ -1,92 +1,42 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; 
- 
-import { toast } from "react-toastify"; 
+import { useContext } from "react"; 
 import Comments from "./Comments/Comments";
 import TeamInfo from "./TeamInfo/TeamInfo";
-import TasksDetail from "./TasksDetail/TasksDetail";
+import TasksDetail from "./TasksDetail/TasksDetail"; 
+import { AuthContext } from "../../../context/AuthProvider";
+import AddTask from "./AddTask/AddTask";
+import { SingleTaskContext } from "../../../context/SingleTaskProvider";
 
 
-const TeamDetails = () => {
-    const { id } = useParams();
-    const [teaminfo, setTeamInfo] = useState({});
-    const [modalOpen, setModalOpen] = useState(false);
-    const [commentsModalOpen, setCommentsModalOpen] = useState(false);
-    const [taskInfo, setTaskInfo] = useState([]);
-    const [comments, setComments] = useState([]);
-    const [taskAdd, serTaskAdd] = useState("");
+const TeamDetails = () => { 
 
-    useEffect(() => {
-        const usersData = () => {
-            fetch(`http://localhost:5000/api/v1/teams/${id}`)
-                .then(res => res.json())
-                .then(res => { 
-                    setTeamInfo(res.data);
-                    setTaskInfo(res.data.taskInfo);
-                    setComments(res.data.comments);
-                })
-                .catch(error => toast.error(error.message));
+    const { userName } = useContext(AuthContext);
 
-        }
-        usersData();
-
-    }, [id, taskAdd]);
-
-    const handleSubmit = (taskI) => {
-
-        teaminfo.taskInfo.push(taskI);
-
-        fetch(`http://localhost:5000/api/v1/teams/${id}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify({ taskInfo: teaminfo.taskInfo })
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data); 
-                serTaskAdd("added");
-                toast.success('Task created uccessfully', { autoClose: 1000 })
-            })
-            .catch(error => toast.error(error.message));
-
-    };
-
-    
+    const { teamleader, teamName } = useContext(SingleTaskContext); 
+     
+ 
     return (
         <div className="mb-10">
             <h1 className='text-2xl md:text-4xl  text-center '>
-                <span className='border-b-2 pb-2 text-secondary border-slate-300'>{teaminfo?.teamName}</span>
+                <span className='border-b-2 pb-2 text-secondary border-slate-300'>{teamName}</span>
             </h1>
 
             <div className=" flex justify-center mt-6   ">
-                <TeamInfo 
-                userInfo={teaminfo?.userInfo}
-                classAdd={" w-[350px] lg:w-[600px] overflow-y-auto h-[320px] px-4 "}
-                 />
+
+                <TeamInfo   />
+                
             </div>
 
-            <TasksDetail
-                teamleader={teaminfo?.teamleader}
-                userInfo={teaminfo?.userInfo}
-                taskInfo={taskInfo}
-                modalOpen={modalOpen}
-                setModalOpen={setModalOpen}
-                handleSubmit={handleSubmit}
-            />
+            <TasksDetail  />
 
- 
- 
-            <Comments
-                comments={comments}
-                commentsModalOpen={commentsModalOpen}
-                setCommentsModalOpen={setCommentsModalOpen}
-            />
-
+            {
+                (teamleader == userName) &&  <AddTask  />
+                 
+            } 
+            
+            <Comments />
 
         </div>
+
     );
 };
 

@@ -1,16 +1,14 @@
   /* eslint-disable react/prop-types */
  import { useEffect, useState } from 'react'; 
  import { FaArrowRight, FaCheck } from "react-icons/fa";
- import { Link } from 'react-router-dom';
- import { toast } from 'react-toastify';  
-import TeamInfo from '../TeamDetails/TeamInfo/TeamInfo';
+ import { Link } from 'react-router-dom'; 
+import AllTeamInfoCard from './AllTeamInfoCard';
+import aTeamUpdate from '../../../loaders/update/aTeamUpdate';
  
- const TeamCard = ({ userName, team }) => {
-     const { teamName, teamleader, userInfo, _id } = team;
-     const [users, setUsers] = useState(userInfo);
+ const TeamCard = ({  team, userName,  refetch }) => {
+     const { teamName, teamleader, userInfo, _id } = team; 
  
-     const [userstatus, setUserStatus] = useState("pending");
-  
+     const [userstatus, setUserStatus] = useState("pending"); 
  
      useEffect(() => {
          userInfo?.forEach(obj => {
@@ -42,29 +40,8 @@ import TeamInfo from '../TeamDetails/TeamInfo/TeamInfo';
              }
  
          });
- 
-         console.log(upInfo)
- 
-         fetch(`http://localhost:5000/api/v1/teams/${_id}`,
-             {
-                 method: 'PATCH',
-                 headers: {
-                     'content-type': 'application/json',
-                 },
-                 body: JSON.stringify({ userInfo: upInfo })
-             })
-             .then(res => res.json())
-             .then(data => {
-                 console.log(data);
-                 setUserStatus("accept")
-                 setUsers(upInfo);
-                 toast.success('Status update successfully', { autoClose: 1000 })
- 
-             })
-             .catch(error => toast.error(error.message));
- 
- 
-         console.log(userInfo)
+  
+         aTeamUpdate(_id, "userInfo", upInfo, refetch)  
      }
  
  
@@ -74,7 +51,7 @@ import TeamInfo from '../TeamDetails/TeamInfo/TeamInfo';
              <h1 className='text-lg pb-2  '>Team Leader: <span className='text-blue-400'>{teamleader}</span></h1>
  
              <div className='overflow-y-auto h-[258px]   px-4    '>
-                 <TeamInfo userInfo={users} />
+                 <AllTeamInfoCard userInfo={userInfo} />
              </div>
              <p className='py-10'> </p>
  

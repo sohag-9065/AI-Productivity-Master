@@ -5,14 +5,23 @@ import CommentsTable from "./CommentsTable";
 import CommentsModal from "./CommentsModal";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useParams } from "react-router-dom"; 
+import { SingleTaskContext } from "../../../../context/SingleTaskProvider";
+import aTeamUpdate from "../../../../loaders/update/aTeamUpdate";
 
 
-const Comments = ({ comments, commentsModalOpen, setCommentsModalOpen }) => {
+const Comments = () => {
 
     const { id } = useParams();
     const { user } = useContext(AuthContext)
+
+    const {
+        comments, 
+        commentsModalOpen,
+        setCommentsModalOpen,
+        refetch
+    } = useContext(SingleTaskContext); 
+
     const [comment, setComent] = useState("");
 
     const handleSubmit = () => {
@@ -26,30 +35,17 @@ const Comments = ({ comments, commentsModalOpen, setCommentsModalOpen }) => {
 
         comments.push(userComment);
 
-
-        fetch(`http://localhost:5000/api/v1/teams/${id}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify({ comments: comments })
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toast.success('Commet added successfully', { autoClose: 1000 }) 
-
-            })
-            .catch(error => toast.error(error.message));
+        aTeamUpdate(id, "comments", comments, refetch);
+ 
         console.log(comments)
     }
+    
     return (
         <div>
             <div className="flex justify-center mt-6  ">
 
                 {
-                    comments.length > 0 ?
+                    comments?.length > 0 ?
 
                         <div>
 

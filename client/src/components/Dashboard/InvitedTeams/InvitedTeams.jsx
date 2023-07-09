@@ -1,66 +1,48 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthProvider"; 
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider";  
 import TeamCard from "../TeamCard/TeamCard";
+import Loading from "../../shared/Loading";
+import { useQuery } from "react-query";
 
 
 const InvitedTeams = () => {
-    const { user } = useContext(AuthContext);
-    const [userName, setUserName] = useState("");
-    const [inviteTeams, setInviteTeams] = useState([]);
+    const { userName } = useContext(AuthContext); 
+ 
+    const { data: inviteTeams, isLoading, refetch } = useQuery('teamsinvite', () =>
+        fetch(`http://localhost:5000/api/v1/teams/invite?user=${userName}`, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+    ); 
 
-    useEffect(() => {
-        if (user?.displayName) {
-            setUserName(user?.displayName);
-        }
+    if (isLoading) {
+        return (
+            <div className='h-screen'>
+              <Loading />
+            </div>
+          )
+    } 
 
-    }, [user]);
-
-    useEffect(() => {
-        const usersData = async () => {
-            try {
-                let usersDataLoad;
-                let allTeams;
-
-                if (userName) {
-                    usersDataLoad = await fetch(`http://localhost:5000/api/v1/teams/invite?user=${userName}`);
-                    allTeams = await usersDataLoad.json()
-
-                }
-                if (allTeams?.data) {
-                    setInviteTeams(allTeams.data);
-                }
-            } catch (error) {
-                toast.error(error.message)
-            }
-        }
-        usersData();
-
-    }, [userName])
-
-    return (
-
+    return ( 
         <>
             {
-                inviteTeams.length > 0 ?
+                inviteTeams?.data?.length > 0 ?
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {
-                            inviteTeams?.map((team, indx) => <TeamCard
+                            inviteTeams?.data?.map((team, indx) => <TeamCard
                                 key={indx}
                                 userName={userName}
-                                team={team}
+                                team={team} 
+                                refetch={refetch}
                             />)
                         }
                     </div>
                     :
                     <div className="flex justify-center items-center h-full">
                         <p className=" text-2xl md:text-3xl text-blue-400">No team  has been invited yet!</p>
-                    </div>
-
-            }
-
-        </>
-
+                    </div> 
+            } 
+        </> 
     );
 };
 

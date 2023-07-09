@@ -1,5 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../layout/Main";
+import { createBrowserRouter } from "react-router-dom"; 
 import Home from "../components/Home/Home";
 import ErrorPage from "../components/shared/ErrorPage";
 import TeamCreate from "../components/TeamCreate/TeamCreate";
@@ -7,16 +6,17 @@ import SignUp from "../components/Authentication/SignUp/SignUp"
 import SignIn from "../components/Authentication/SignIn/SignIn"
 import MyProfile from "../components/Dashboard/MyProfile/MyProfile";
 import Dashboard from "../components/Dashboard/Dashboard";
-import MyTeams from "../components/Dashboard/MyTeams/MyTeams"; 
-import TeamDetails from "../components/Dashboard/TeamDetails/TeamDetails";
+import MyTeams from "../components/Dashboard/MyTeams/MyTeams";  
 import ProtectRoute from "./ProtectRoute";
 import InvitedTeams from "../components/Dashboard/InvitedTeams/InvitedTeams";
+import MainBody from "../layout/MainBody"; 
+import TeamDetailsAuth from "../components/Dashboard/TeamDetails/TeamDetailsAuth";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Main />,
+        element: <MainBody />,
         errorElement: <ErrorPage />,
         children: [
             {
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'my-teams/details/:id',
-                        element: <TeamDetails />
+                        element: <TeamDetailsAuth />
                     },
                     {
                         path: 'invited-teams',
@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'invited-teams/details/:id',
-                        element: <TeamDetails />
+                        element: <TeamDetailsAuth />
                     }
                 ]
             },

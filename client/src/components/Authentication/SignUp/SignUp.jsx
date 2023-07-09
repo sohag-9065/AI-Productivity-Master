@@ -26,7 +26,11 @@ const SignUp = () => {
  
 
   if (loading || loadingUser || allUsersNameLoading) {
-    return <Loading />
+    return (
+      <div className='h-screen'>
+        <Loading />
+      </div>
+    )
   }
 
 

@@ -1,25 +1,17 @@
-/* eslint-disable react/prop-types */
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../../context/AuthProvider';
-import TaskDetail from './TaskDetail/TaskDetail';
-import AddTask from '../AddTask/AddTask';
+/* eslint-disable react/prop-types */    
+import { useContext } from 'react';
+import TaskDetail from './TaskDetail/TaskDetail'; 
+import { SingleTaskContext } from '../../../../context/SingleTaskProvider';
 
-const TasksDetail = ({ teamleader, taskInfo, modalOpen, setModalOpen, handleSubmit }) => {
-    const { user } = useContext(AuthContext);
-    const [userName, setUserName] = useState("");
+const TasksDetail = () => { 
 
-    useEffect(() => {
-        if (user?.displayName) {
-            const name = user?.displayName;
-            setUserName(name);
-        }
-
-    }, [user]);
+    const { taskInfo, refetch } = useContext(SingleTaskContext); 
+ 
     return (
         <div>
             <div className="flex justify-center mt-6  ">
                 {
-                    taskInfo.length > 0 ?
+                    taskInfo?.length > 0 ?
 
                         <div className=' '>
 
@@ -31,9 +23,8 @@ const TasksDetail = ({ teamleader, taskInfo, modalOpen, setModalOpen, handleSubm
                                     taskInfo?.map((task, indx) => <TaskDetail
                                         key={indx}
                                         indx={indx}
-                                        task={task}
-
-                                        userName={userName}
+                                        task={task} 
+                                        refetch={refetch}
 
                                     />)
                                 }
@@ -43,20 +34,7 @@ const TasksDetail = ({ teamleader, taskInfo, modalOpen, setModalOpen, handleSubm
                         :
                         <p className="text-2xl md:text-3xl text-blue-400">No work has been created yet!</p>
                 }
-            </div>
-
-            {
-                teamleader == userName && (
-                    <AddTask
-                        modalOpen={modalOpen}
-                        setModalOpen={setModalOpen}
-                        handleSubmit={handleSubmit}
-                    />
-                )
-
-
-            }
-
+            </div> 
 
         </div>
     );
