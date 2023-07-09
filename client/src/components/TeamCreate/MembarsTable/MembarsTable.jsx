@@ -1,7 +1,7 @@
   /* eslint-disable react/prop-types */
  
 import { BsFillTrashFill } from "react-icons/bs";
-import '../../../css/DescriptionTable.css'
+import '../../../style/DescriptionTable.css'
 
 const MembarsTable = ({userNames,  setUserNames }) => {
  

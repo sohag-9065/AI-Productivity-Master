@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {  useState } from "react";
-import '../../../../css/Modal.css';
+import '../../../../style/Modal.css';
 import { RxCross2 } from 'react-icons/rx'; 
 import useAllUsersName from "../../../../hooks/useAllUsersName";
 import AutoSuggestInput from "../../../shared/AutoSuggestInput";
@@ -45,7 +45,7 @@ const MembarAddModal = ({ userNames, closeModal, onSubmit }) => {
         }
 
         for (const userName of allUsersName) {
-            if (userName?.toLowerCase() == selectedUsers?.toLowerCase()) {
+            if (userName == selectedUsers) {
                 setErrors("");
                 return true;
             }

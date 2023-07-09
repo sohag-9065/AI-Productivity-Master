@@ -1,0 +1,33 @@
+ 
+.slick-dots li  button:before {
+    font-size: 15px;
+}
+
+.slick-dots:hover {
+  color: red !important;
+}
+
+
+.slick-dots li.slick-active button:before {
+  color: #FD5F00 !important;
+}
+
+.slide{
+  opacity: .5;
+  transform: scale(.9);
+}
+
+.slide-active{
+  opacity: 1;
+  transition-duration: 1000ms;
+  transform: scale(1);
+}
+
+
+ 
+ 
+ /* .slick-active{
+  color: red  !important;
+  background-color: blue; 
+  border-radius: 100%;
+ } */

@@ -2,9 +2,8 @@
 import { useEffect, useState } from 'react'; 
 import { toast } from 'react-toastify'; 
 
+// eslint-disable-next-line no-unused-vars
 const useAllUsersInfo = () => {
-
- 
 
     const [allUsersInfo, setAllUsersInfo] = useState([]);
     const [allUsersInfoLoading, setAllUsersInfoLoading] = useState(false);
@@ -12,7 +11,7 @@ const useAllUsersInfo = () => {
     useEffect(() => {
         setAllUsersInfoLoading(true); 
         
-        fetch('http://localhost:5000/api/v1/users')
+        fetch(`http://localhost:5000/api/v1/users`)
             .then(res => res.json())
             .then(res => {
 

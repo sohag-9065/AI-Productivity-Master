@@ -39,7 +39,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
                 .then(res => {
                     const userInfo = res.data.userInfo;
                     const userAccept = [];
-                    userInfo.forEach(user => {
+                    userInfo?.forEach(user => {
                         if (user.status == "accept") {
                             userAccept.push(user);
                         }
@@ -48,7 +48,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
                     let nameAndSkill = `I have ${userAccept.length} employee.`;
                     let allName = [];
 
-                    userAccept.forEach(user => {
+                    userAccept?.forEach(user => {
 
                         nameAndSkill += " One of then is called " + user.user + " and his skill is " + user.skills + ". ";
                         allName.push(user.user);
@@ -105,7 +105,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
             result = result.split('.').join('');
             if (result) {
 
-                allUsers.forEach(user => {
+                allUsers?.forEach(user => {
                     if (result.includes(user)) {
 
                         setUserAssign(user);
@@ -139,7 +139,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
         }
 
         const userNames = [];
-        userAvailable.forEach(user => {
+        userAvailable?.forEach(user => {
             userNames.push(user.user);
 
         })
@@ -166,7 +166,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
 
 
         const userNames = [];
-        userAvailable.forEach(user => {
+        userAvailable?.forEach(user => {
             userNames.push(user.user);
 
         })
