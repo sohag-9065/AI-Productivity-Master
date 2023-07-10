@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 
-const AllTeamInfoCard = ({ classAdd, userInfo }) => {
+const AllTeamInfoCard = ({ userInfo }) => {
 
 
   return (
-    <div className={`table-wrapper pb-8 ${classAdd}`}>
-      <table className=" table  ">
+    <div className={`table-wrapper pb-4  `}>
+      <table className=" table    ">
 
         <caption className="caption-top my-2 ">
           Team Membars
         </caption>
 
-        <thead className="bg-purple-300 text-white text-base font-light ">
+        <thead className="bg-purple-300 text-white  text-base font-light ">
 
           <tr>
             <th>Sr.</th>

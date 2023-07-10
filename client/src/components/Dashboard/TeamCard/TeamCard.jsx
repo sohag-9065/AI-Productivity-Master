@@ -46,14 +46,14 @@ import aTeamUpdate from '../../../loaders/update/aTeamUpdate';
  
  
      return (
-         <div className='relative bg-slate-200  p-6  h-[400px] rounded-lg'>
-             <h1 className='text-xl  text-blue-400'>Team Name: {teamName}</h1>
-             <h1 className='text-lg pb-2  '>Team Leader: <span className='text-blue-400'>{teamleader}</span></h1>
+         <div className='relative bg-slate-200  p-6  h-[380px] rounded-lg'>
+             <h1 className='text-xl  text-blue-400   px-2'>Team Name: {teamName}</h1>
+             <h1 className='text-lg pb-2   px-2  '>Team Leader: <span className='text-blue-400'>{teamleader}</span></h1>
  
-             <div className='overflow-y-auto h-[258px]   px-4    '>
+             <div className='overflow-y-auto h-[258px]     '>
                  <AllTeamInfoCard userInfo={userInfo} />
              </div>
-             <p className='py-10'> </p>
+             <p className='py-6'> </p>
  
              {
                  userstatus == "pending" ?
@@ -62,7 +62,7 @@ import aTeamUpdate from '../../../loaders/update/aTeamUpdate';
                          <FaCheck />
                      </p>
                      :
-                     <Link to={`details/${_id}`} className='flex justify-center items-center gap-3 absolute  bottom-0 text-center left-[50%]  -translate-x-[50%] cursor-pointer px-3 py-2 bg-secondary text-white w-full'>
+                     <Link to={`details/${_id}`} className='flex justify-center items-center gap-3 absolute rounded-b-lg  bottom-0 text-center left-[50%]  -translate-x-[50%] cursor-pointer px-3 py-2 bg-secondary text-white w-full'>
                          <span>See Details</span>
                          <FaArrowRight />
                      </Link>

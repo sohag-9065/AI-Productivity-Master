@@ -38,7 +38,8 @@ const AddTaskModal = () => {
                 taskPriority,
                 taskDeadline,
                 userAssign,
-                progress: "10"
+                progress: "10",
+                taskComments: []
             }
 
             const allTask = [...taskInfo, newTask]

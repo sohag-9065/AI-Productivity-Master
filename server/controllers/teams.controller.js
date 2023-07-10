@@ -8,7 +8,7 @@ module.exports.getAllTeams = async (req, res, next) => {
         const db = getDb();
         const query = req.query;
 
-  
+
         let teams = await db
             .collection("teams")
             .find(query)
@@ -67,6 +67,43 @@ module.exports.getTeamDetail = async (req, res, next) => {
     }
 };
 
+module.exports.getTaskInfoDetail = async (req, res, next) => {
+    try {
+        const db = getDb();
+        const { id } = req.params;
+
+        if (!ObjectId.isValid(id)) {
+            console.log("object")
+            return res.status(400).json({ success: false, error: "Not a valid team id." });
+        }
+
+        let teams = await db
+            .collection("teams")
+            .find({ _id: new ObjectId(id) })
+            .project(
+                {
+                    taskInfo: 1,
+                    teamleader: 1,
+                    _id: 0
+                }
+            )
+            .toArray();
+
+
+        let tasks = teams[0];
+ 
+
+        if (!tasks) {
+            return res.status(400).json({ success: false, error: "Couldn't find a tool with this id" });
+        }
+
+        res.status(200).json({ success: true, data: tasks });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 module.exports.saveATeam = async (req, res, next) => {
     try {
@@ -111,14 +148,28 @@ module.exports.updateATeam = async (req, res, next) => {
     }
 };
 
-module.exports.updateTeamProgress = async (req, res, next) => {
+module.exports.updateTaskInfo = async (req, res, next) => {
     try {
 
-        const { taskTitle, progress } = req.body;
+        const { taskTitle, progress, taskPriority } = req.body;
         const db = getDb();
 
         const { id } = req.params;
 
+        console.log(taskTitle)
+        console.log(taskPriority)
+
+        let updateProperty = {};
+
+        if(progress) {
+            updateProperty = { "taskInfo.$.progress": progress };
+        }
+
+        if(taskPriority) {
+            updateProperty = { "taskInfo.$.taskPriority": taskPriority };
+        }
+ 
+ 
         const result = await db
             .collection("teams").
             updateOne(
@@ -133,7 +184,8 @@ module.exports.updateTeamProgress = async (req, res, next) => {
                     ]
                 },
                 {
-                    $set: { "taskInfo.$.progress": progress }
+                    // $set: { "taskInfo.$.progress": progress }
+                    $set: updateProperty
                 },
                 {
                     upsert: true
@@ -145,7 +197,7 @@ module.exports.updateTeamProgress = async (req, res, next) => {
         }
 
         res.send({ success: true, message: `Team update with id: ${id}` });
-        
+
     } catch (error) {
         next(error);
     }

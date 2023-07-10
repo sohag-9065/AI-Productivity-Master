@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Loading from '../../../../../shared/Loading';
 import { AiOutlineReload } from 'react-icons/ai'; 
 import taskDescriptionGenerate from '../../../../../../promptEngineer/taskDescriptionGenerate';
+import { toast } from 'react-toastify';
 
 
 
@@ -32,7 +33,7 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
             .then(res => res.json())
             .then( res => {
                 console.log(res);
-                setTaskDescription(res?.data?.taskDescription)
+                setTaskDescription(res?.data?.taskDescription) ;
             })
 
     }
@@ -44,14 +45,17 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
             return;
         }
 
-        if(!taskDescription) {
-            priviousTitleMatch();
+        taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
+ 
 
-        }
-        else {
+        // if(!taskDescription) {
+        //     priviousTitleMatch();
+
+        // }
+        // else {
             
-            taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
-        }
+        //     taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
+        // }
  
         setError("");
     }

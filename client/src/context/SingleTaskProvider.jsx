@@ -26,8 +26,7 @@ const SingleTaskProvider = ({ children }) => {
         })
             .then(res => res.json())
     );
-  
-
+   
     useEffect(() => {
 
         if (taskInfoArr) {
@@ -45,6 +44,10 @@ const SingleTaskProvider = ({ children }) => {
         return <Loading></Loading>
     }
 
+    const getSingleTaskInfo = (index) => {
+        console.log(index)
+
+    }
  
 
     const info = {
@@ -58,6 +61,7 @@ const SingleTaskProvider = ({ children }) => {
         setModalOpen,
         commentsModalOpen,
         setCommentsModalOpen, 
+        getSingleTaskInfo,
         refetch,
     }
 

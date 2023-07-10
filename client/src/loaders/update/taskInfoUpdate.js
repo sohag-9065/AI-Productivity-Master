@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 
-const progressUpdate = (id, taskTitle, property, value, refetch) => {
+ 
+const taskInfoUpdate = (id, taskTitle, property, value, refetch) => {
 
     let query = { taskTitle };
  
@@ -25,11 +26,11 @@ const progressUpdate = (id, taskTitle, property, value, refetch) => {
         .then(res => res.json())
         .then(() => {
             refetch();
-            toast.success('Progress update successfully', { autoClose: 1000 })
+            toast.success(`Update ${property} Sucessfully`, { autoClose: 1000 })
         })
         .catch(error => toast.error(error.message));
 
-    return "Update Progress Sucessfully";
+    return `Update ${property} Sucessfully`;
 };
 
-export default progressUpdate;
+export default taskInfoUpdate;

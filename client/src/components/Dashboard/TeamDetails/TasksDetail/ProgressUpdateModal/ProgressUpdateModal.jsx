@@ -2,28 +2,30 @@
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
-const ProgressUpdateModal = ({ value, setVAlue, closeModal, onSubmit }) => {
+const ProgressUpdateModal = ({ value, setValue, closeModal, onSubmit }) => {
 
     const [error, setError] = useState(""); 
 
     const handleProgressChange = (e) => {
         e.preventDefault();
-  
+
+        
         const upValue = parseInt(e.target.value);
+        console.log(upValue)
 
         if(upValue > 100 ) {
             setError("Max 100 % ");
-            setVAlue(100);
+            setValue(100);
             return;
         }
 
         if(upValue < 1 ) {
             setError("Min 1 % ");
-            setVAlue(1);
+            setValue(1);
             return;
         }
 
-        setVAlue(e.target.value);
+        setValue(e.target.value);
 
     }
     const handkeProgrsstionUpdate = (e) => {

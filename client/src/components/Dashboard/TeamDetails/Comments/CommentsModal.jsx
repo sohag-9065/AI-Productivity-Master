@@ -2,17 +2,21 @@
 
 import { RxCross2 } from 'react-icons/rx';
 
-const CommentsModal = ({ closeModal, onSubmit , comment, setComent}) => {
+const CommentsModal = ({ closeModal, onSubmit , comment, setComment}) => {
 
 
     const handleChange = e => {
         const { target } = e;
-        setComent(target.value);
+        console.log(target.value)
+        setComment(target.value);
     };
 
     const handleSubmit = (e) => {
+
+        console.log(e)
+
         e.preventDefault();
-        console.log("Modal")
+        
         onSubmit();
 
 

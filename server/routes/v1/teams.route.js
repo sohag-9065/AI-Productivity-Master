@@ -2,7 +2,7 @@ const express = require("express");
 const teamsControllers = require("../../controllers/teams.controller");
 
 const router = express.Router();
- 
+
 
 router
   .route("/")
@@ -14,8 +14,13 @@ router
   .get(teamsControllers.getAllInvitedTeams);
 
 router
-  .route("/progress/:id")
-  .patch(teamsControllers.updateTeamProgress);
+  .route("/taskInfo/:id")
+  .get(teamsControllers.getTaskInfoDetail)
+  .patch(teamsControllers.updateTaskInfo);
+
+// router
+//   .route("/progress/:id")
+//   .patch(teamsControllers.updateTeamProgress);
 
 router
   .route("/:id")

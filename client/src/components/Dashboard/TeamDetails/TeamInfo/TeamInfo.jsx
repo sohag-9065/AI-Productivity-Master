@@ -1,44 +1,44 @@
 /* eslint-disable react/prop-types */
 
-import { useContext } from "react"; 
+import { useContext } from "react";
 import { SingleTaskContext } from "../../../../context/SingleTaskProvider";
 
-  
-const TeamInfo  = () => {
 
-  const { membarsInfo } = useContext(SingleTaskContext);  
+const TeamInfo = () => {
+
+  const { membarsInfo } = useContext(SingleTaskContext);
+
+
+  return (
+    <div className={`   px-5 bg-slate-200 pb-4 w-[350px] lg:w-[550px] rounded-lg  `}>
+      <p className="text-2xl md:text-3xl  my-3 text-center  mb-4 mx-3 text-secondary border-slate-300">
+        <span className=" border-b-2 border-slate-300 pb-2"> Team Membars</span>
+      </p>
+      <table className=" table  ">
+
+        <thead className="bg-purple-300 text-white text-base font-light ">
+          <tr>
+            <th> </th>
+            <th  >Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {membarsInfo?.map((membar, idx) => {
+
+            return (
+              <tr key={idx}  >
+                <td>{idx + 1}.</td>
+                <td className="  w-[70%]">{membar.user}</td>
+                <td className=" ">{membar.status}</td> 
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
  
-
-    return (
-      <div className={`table-wrapper pb-8 w-[350px] lg:w-[600px] overflow-y-auto h-[320px] px-4`}>
-        <table className=" table  ">
-          <caption className="caption-top my-2 ">
-            Team Membars
-          </caption>
-          <thead className="bg-purple-300 text-white text-base font-light ">
-            <tr>
-              <th>Sr.</th>
-              <th  >Name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {membarsInfo?.map((membar, idx) => {
-  
-              return (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td className="expand w-[80%]">{membar.user}</td>
-                  <td className="expand">{membar.status}</td>
-  
-  
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default TeamInfo;

@@ -11,6 +11,7 @@ import ProtectRoute from "./ProtectRoute";
 import InvitedTeams from "../components/Dashboard/InvitedTeams/InvitedTeams";
 import MainBody from "../layout/MainBody"; 
 import TeamDetailsAuth from "../components/Dashboard/TeamDetails/TeamDetailsAuth";
+import SingleTaskDetails from "../components/Dashboard/TeamDetails/TasksDetail/TaskDetail/SingleTaskDetails/SingleTaskDetails";
 
 
 export const router = createBrowserRouter([
@@ -59,13 +60,21 @@ export const router = createBrowserRouter([
                         element: <TeamDetailsAuth />
                     },
                     {
+                        path: 'my-teams/details/:id/:indx',
+                        element: <SingleTaskDetails />
+                    },
+                    {
                         path: 'invited-teams',
                         element: <InvitedTeams/>
                     },
                     {
                         path: 'invited-teams/details/:id',
                         element: <TeamDetailsAuth />
-                    }
+                    },
+                    {
+                        path: 'invited-teams/details/:id/:indx',
+                        element: <SingleTaskDetails />
+                    },
                 ]
             },
             {

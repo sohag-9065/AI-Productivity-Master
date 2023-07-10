@@ -1,101 +1,63 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
-import { FaEdit } from "react-icons/fa";
-import { useParams } from "react-router-dom"; 
+import { FaArrowRight, FaEdit } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
 import ProgressUpdateModal from "../ProgressUpdateModal/ProgressUpdateModal";
 import progressUpdate from "../../../../../loaders/update/progressUpdate";
 import { AuthContext } from "../../../../../context/AuthProvider";
 
 
-const TaskDetail = ({ indx, task, refetch  }) => {
+const TaskDetail = ({ indx, task, teamleader, refetch }) => {
  
-    const { userName } = useContext(AuthContext);
-
-    const [modalOpen, setModalOpen] = useState(false); 
-    const [value, setVAlue] = useState(task?.progress);
-
-    const { id } = useParams(); 
  
-    const handleProgress = () => {  
+    const { id } = useParams();
 
-        progressUpdate(id, task?.taskTitle, value, refetch);  
-        
-    } 
+    const taskData = [
+        {
+            name: "Task Title",
+            value: `${task?.taskTitle?.slice(0,60)}...`
+        },
+        {
+            name: "Task Priority",
+            value: task?.taskPriority
+        },
+        {
+            name: "Task Deadline",
+            value: task?.taskDeadline?.slice?.(0, 10)
+        },
+        {
+            name: "Task Assign",
+            value: task?.userAssign
+        },
+        {
+            name: "Task Progress",
+            value: `${task?.progress} %`
+        },
 
+    ]
+ 
     return (
-        <div className=" table-wrapper pb-8 w-[310px] lg:w-[550px]  m-6">
+        <div className="relative m-6 p-4 pb-6 py-4 space-y-2 bg-slate-200  rounded-lg  border-slate-500">
+            <p className="text-center text-blue-700  text-xl pb-2"> Team Leader : {teamleader}</p>
+            {
+                taskData?.map((task, index) => <div
+                    key={index}
+                    className="grid grid-cols-7 bg-purple-200 p-2 rounded-lg "
+                >
+                    <p className="col-span-2 font-bold  text-blue-500  ">{task?.name}</p>
+                    <div className="col-span-5 flex" >
+                        <p className="font-bold mx-2">:</p>
+                        <p className=" ">{task?.value} </p>
+                    </div>
+                </div>)
+            }
 
-            <table className=" table border-collapse border border-slate-500  bg-slate-100">
-                <caption className="caption-top bg-purple-310 py-2 my-2">
-                    Task: {indx + 1}
-                </caption>
-
-
-
-                <tbody>
-                    <tr className="border border-slate-500" >
-                        <td className="font-bold  w-[30%]   ">Task Title:</td>
-                        <td  > {task?.taskTitle} </td>
-                    </tr>
-
-                    <tr className="border border-slate-500" >
-                        <td className="font-bold  w-[30%]  ">Task Description:</td>
-                        <td  > {task?.taskDescription} </td>
-                    </tr>
-
-                    <tr className="border border-slate-500" >
-                        <td className="font-bold  w-[30%]  ">Task Priority:</td>
-                        <td  > {task?.taskPriority} </td>
-                    </tr>
-
-                    {
-                        (task?.taskDeadline) ?
-                            <tr className="border border-slate-500" >
-                                <td className="font-bold  w-[30%]  ">Task Deadline:</td>
-                                <td  > {task?.taskDeadline?.slice?.(0, 10)} </td>
-                            </tr>
-                            :
-                            <></>
-
-
-                    }
-
-                    <tr className="border border-slate-500" >
-                        <td className="font-bold  text-secondary w-[30%]  ">Assign Membar:</td>
-                        <td  > {task?.userAssign} </td>
-                    </tr>
-
-                    <tr className="border border-slate-500 " >
-                        <td className="font-bold text-secondary  w-[30%]  ">Task Progress:</td>
-                        {
-                            userName == task?.userAssign ?
-
-                                <td onClick={() => setModalOpen(true)} className="flex  justify-between border-t-0 mr-10 cursor-pointer" >
-
-                                    <span>{value} % complete</span>
-                                    <FaEdit className="text-secondary text-xl" />
-                                </td> 
-                                :
-                                <td  > {task?.progress} %  complete</td> 
-                        }
-
-                    </tr>
-                </tbody>
-
-            </table> 
-
-            {modalOpen && (
-                <ProgressUpdateModal
-                    closeModal={() => {
-                        setModalOpen(false);
-                    }}
-                    onSubmit={handleProgress}
-                    value={value}
-                    setVAlue={setVAlue}
-                />
-            )}
+            <p className='py-3'> </p>
+            <Link to={`${indx+1}`}  className='flex justify-center items-center gap-3 absolute  bottom-0 text-center left-[50%]  -translate-x-[50%] cursor-pointer  rounded-b-lg  py-2 bg-secondary text-white w-full '>
+                <span>See Details</span>
+                <FaArrowRight />
+            </Link>
         </div>
     );
 };
 export default TaskDetail;
- 

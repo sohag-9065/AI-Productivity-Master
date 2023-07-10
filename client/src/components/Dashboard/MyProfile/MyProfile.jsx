@@ -52,13 +52,13 @@ const MyProfile = () => {
                 <p className="  text-4xl text-secondary font-bold  ">User: {userName}</p>
                 <hr className="text-slate-200 " />
 
-                <p className="  text-2xl    ">Email: {email}</p>
+                <p className="  text-xl    ">Email: {email}</p>
                 <hr className="text-slate-200 " />
 
                 <div className="flex gap-2">
 
-                    <p className="  text-2xl   ">Skills:  </p>
-                    <p className="  text-2xl   "> {userInfoArr?.data[0]?.skills}</p>
+                    <p className="  text-xl   ">Skills:  </p>
+                    <p className="  text-xl   "> {userInfoArr?.data[0]?.skills}</p>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@ const MyProfile = () => {
                     {errors.skill?.type === 'required' && <p className='text-red-600' role="alert">{errors.skill?.message}</p>}
 
 
-                    <input type="submit" className='btn bg-secondary hover:bg-secondary/[.8]  text-white mt-6' value="Sign Up" />
+                    <input type="submit" className='btn bg-secondary hover:bg-secondary/[.8]  text-white mt-6' value="Add Skills" />
                 </form>
 
             </div>

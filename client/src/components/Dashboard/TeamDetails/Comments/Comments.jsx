@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import { BiMessageRoundedAdd } from "react-icons/bi";
-import CommentsTable from "./CommentsTable"; 
+import CommentsTable from "./CommentsTable";
 import CommentsModal from "./CommentsModal";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
 import { SingleTaskContext } from "../../../../context/SingleTaskProvider";
 import aTeamUpdate from "../../../../loaders/update/aTeamUpdate";
 
@@ -16,13 +16,13 @@ const Comments = () => {
     const { user } = useContext(AuthContext)
 
     const {
-        comments, 
+        comments,
         commentsModalOpen,
         setCommentsModalOpen,
         refetch
-    } = useContext(SingleTaskContext); 
+    } = useContext(SingleTaskContext);
 
-    const [comment, setComent] = useState("");
+    const [comment, setComment] = useState("");
 
     const handleSubmit = () => {
 
@@ -35,14 +35,16 @@ const Comments = () => {
 
         comments.push(userComment);
 
+
+
         aTeamUpdate(id, "comments", comments, refetch, "Comment Added");
- 
+
         console.log(comments)
     }
-    
+
     return (
-        <div>
-            <div className="flex justify-center mt-6  ">
+        <div className="mt-4">
+            <div className="w-[450px] lg:w-[550px]  px-5   py-6 space-y-2 bg-slate-200  rounded-lg  border-slate-500 ">
 
                 {
                     comments?.length > 0 ?
@@ -60,14 +62,16 @@ const Comments = () => {
                         :
                         <p className="text-2xl text-center md:text-3xl text-blue-400">No comment has been added yet!</p>
                 }
+
+                <div className="flex justify-center  ">
+                    <p onClick={() => setCommentsModalOpen(true)} className=" flex items-center gap-4 transition  duration-300  hover:delay-100 cursor-pointer bg-secondary text-white  hover:bg-secondary/[.8]    px-5 py-3 rounded-full text-center  mt-4 ">
+                        Add New Comment
+                        <BiMessageRoundedAdd className="text-white text-2xl" />
+                    </p>
+                </div>
             </div>
 
-            <div className="flex justify-center  ">
-                <p onClick={() => setCommentsModalOpen(true)} className=" flex items-center gap-4 transition  duration-300  hover:delay-100 cursor-pointer bg-secondary text-white  hover:bg-secondary/[.8]    px-5 py-3 rounded-full text-center  mt-4 ">
-                    Add New Comment
-                    <BiMessageRoundedAdd className="text-white text-2xl"/>
-                </p>
-            </div>
+
 
             {commentsModalOpen && (
                 <CommentsModal
@@ -75,7 +79,7 @@ const Comments = () => {
                         setCommentsModalOpen(false);
                     }}
                     comment={comment}
-                    setComent={setComent}
+                    setComment={setComment}
                     onSubmit={handleSubmit}
                 />
             )}
