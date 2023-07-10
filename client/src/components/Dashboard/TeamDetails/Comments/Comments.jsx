@@ -35,7 +35,7 @@ const Comments = () => {
 
         comments.push(userComment);
 
-        aTeamUpdate(id, "comments", comments, refetch);
+        aTeamUpdate(id, "comments", comments, refetch, "Comment Added");
  
         console.log(comments)
     }

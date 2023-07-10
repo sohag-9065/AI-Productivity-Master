@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import aTeamUpdate from "../loaders/update/aTeamUpdate";
+import { useParams } from "react-router-dom"; 
 import Loading from "../components/shared/Loading";
 
 
@@ -27,11 +26,7 @@ const SingleTaskProvider = ({ children }) => {
         })
             .then(res => res.json())
     );
-
-    console.log(membarsInfo)
-
-
- 
+  
 
     useEffect(() => {
 
@@ -50,14 +45,7 @@ const SingleTaskProvider = ({ children }) => {
         return <Loading></Loading>
     }
 
-    const handleSubmit = (task) => {
-
-        teaminfo.taskInfo.push(task);  
-        const taskupdate = teaminfo.taskInfo;
-
-        aTeamUpdate(id, "taskInfo", taskupdate, refetch)
-
-    };
+ 
 
     const info = {
         teaminfo,
@@ -69,8 +57,7 @@ const SingleTaskProvider = ({ children }) => {
         modalOpen,
         setModalOpen,
         commentsModalOpen,
-        setCommentsModalOpen,
-        handleSubmit,
+        setCommentsModalOpen, 
         refetch,
     }
 

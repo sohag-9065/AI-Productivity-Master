@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { categoryName } from '../../../../../../data/category';
 import AutoSuggestInput from '../../../../../shared/AutoSuggestInput';
 
-const CategorySelect = () => {
+const CategorySelect = ({selectedCategory, setSelectedCategory}) => {
     const [results, setResults] = useState();
-    const [selectedCategory, setSelectedCategory] = useState(""); 
+    
 
     const handleChangeCategory = e => {
         const { target } = e;

@@ -19,9 +19,7 @@ const TitleSelect = ({ catagorydata, taskTitle, setTaskTitle }) => {
         const { target } = e;
         setTaskTitle(target.value);
     };
-
-
-
+ 
     return (
         <div>
 
@@ -40,7 +38,7 @@ const TitleSelect = ({ catagorydata, taskTitle, setTaskTitle }) => {
             </div>
             <input
                 value={taskTitle}
-                onChange={handleChange}
+                onChange={handleChange} 
                 type="text"
                 className={` border-[1px] border-slate-300 w-full focus:outline-0 px-5 py-2 rounded-full `}
                 placeholder="Enter task title"

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { RxCross2 } from 'react-icons/rx'; 
-import { useContext, useState } from 'react';  
+import { RxCross2 } from 'react-icons/rx';
+import { useContext, useState } from 'react';
 import CategorySelect from './CategorySelect/CategorySelect';
 import TitleSelect from './TitleSelect/TitleSelect';
 import DescriptionSelect from './DescriptionSelect/DescriptionSelect';
@@ -9,24 +9,30 @@ import PrioritySet from './PrioritySet/PrioritySet';
 import DeadlineSet from './DeadlineSet/DeadlineSet';
 import MembarAssign from './MembarAssign/MembarAssign';
 import { SingleTaskContext } from '../../../../../context/SingleTaskProvider';
+import aTeamUpdate from '../../../../../loaders/update/aTeamUpdate';
+import { useParams } from 'react-router-dom';
+import addTitleDescription from '../../../../../loaders/post/addTitleDescription';
 
 const AddTaskModal = () => {
 
-    const { handleSubmit , setModalOpen} = useContext(SingleTaskContext);
-    
-    const [error, setError] = useState("");
+    const { taskInfo,  setModalOpen, refetch } = useContext(SingleTaskContext);
+
+    const [selectedCategory, setSelectedCategory] = useState(""); 
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [taskPriority, setTaskPriority] = useState(1);
     const [taskDeadline, setTaskDeadline] = useState(new Date());
     const [userAssign, setUserAssign] = useState("");
- 
+    const [error, setError] = useState("");
+
+    const { id = "" } = useParams();
+
     const handleSubmitas = (e) => {
         e.preventDefault();
 
 
         if (taskTitle && userAssign?.length > 0 && taskDescription != "") {
-            const taskInfo = {
+            const newTask = {
                 taskTitle,
                 taskDescription,
                 taskPriority,
@@ -34,9 +40,14 @@ const AddTaskModal = () => {
                 userAssign,
                 progress: "10"
             }
+
+            const allTask = [...taskInfo, newTask]
  
+            aTeamUpdate(id, "taskInfo", allTask, refetch, "New Task Created");
+
+            addTitleDescription({taskTitle, taskDescription})
+
             setError("");
-            handleSubmit(taskInfo);
             setModalOpen(false);
         }
         else {
@@ -54,9 +65,9 @@ const AddTaskModal = () => {
                 <RxCross2 className="absolute top-2 right-3 text-xl font-bold cursor-pointer " onClick={() => setModalOpen(false)} />
                 <form>
 
-                    <CategorySelect />
+                    <CategorySelect selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
-                    <TitleSelect catagorydata={"catagorydata"} taskTitle={taskTitle} setTaskTitle={setTaskTitle} />
+                    <TitleSelect selectedCategory={selectedCategory} taskTitle={taskTitle} setTaskTitle={setTaskTitle} />
 
                     <DescriptionSelect taskTitle={taskTitle} taskDescription={taskDescription} setTaskDescription={setTaskDescription} />
 

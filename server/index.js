@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const usersRoutes = require("./routes/v1/users.route");
 const teamsRoutes = require("./routes/v1/teams.route");
-const titlesRoutes = require("./routes/v1/titles.route");
+const titlesDescriptionsRoutes = require("./routes/v1/TitlesDescriptions.route");
 const errorHandler = require("./middleware/errorHandler");
 const { connectToServer, getDb } = require("./utils/dbConnect");
 const { ObjectId } = require('mongodb');
@@ -20,7 +20,7 @@ app.use("/api/v1/users", usersRoutes);
 
 app.use("/api/v1/teams", teamsRoutes);
 
-app.use("/api/v1/titles", titlesRoutes);
+app.use("/api/v1/titlesDescriptions", titlesDescriptionsRoutes);
  
 
 

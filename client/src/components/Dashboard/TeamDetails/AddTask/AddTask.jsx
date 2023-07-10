@@ -9,10 +9,9 @@ const AddTask = () => {
 
     const {
         modalOpen,
-        setModalOpen,
-        handleSubmit
+        setModalOpen 
     } = useContext(SingleTaskContext);
-  
+
 
     return (
         <div>
@@ -23,14 +22,9 @@ const AddTask = () => {
                 </p>
             </div>
 
-            {modalOpen && (
-                <AddTaskModal
-                    closeModal={() => {
-                        setModalOpen(false);
-                    }}
-                    onSubmit={handleSubmit}
-                />
-            )}
+            {
+                modalOpen && <AddTaskModal />
+            }
 
         </div>
     );

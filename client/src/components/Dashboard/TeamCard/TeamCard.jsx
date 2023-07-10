@@ -41,7 +41,7 @@ import aTeamUpdate from '../../../loaders/update/aTeamUpdate';
  
          });
   
-         aTeamUpdate(_id, "userInfo", upInfo, refetch)  
+         aTeamUpdate(_id, "userInfo", upInfo, refetch, "Invitation Accepted")  
      }
  
  

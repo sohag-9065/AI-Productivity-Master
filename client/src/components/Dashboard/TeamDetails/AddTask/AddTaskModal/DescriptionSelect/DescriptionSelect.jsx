@@ -1,16 +1,41 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';  
+import { useEffect, useState } from 'react';
 import Loading from '../../../../../shared/Loading';
-import { AiOutlineReload } from 'react-icons/ai';
+import { AiOutlineReload } from 'react-icons/ai'; 
 import taskDescriptionGenerate from '../../../../../../promptEngineer/taskDescriptionGenerate';
+
+
+
 const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+  
 
     useEffect(() => {
-        if (taskTitle) setError(""); 
-    }, [taskTitle]); 
+        if (taskTitle) setError("");
+    }, [taskTitle]);
+
+
+
+    const priviousTitleMatch = () => {
+        console.log(taskTitle);
+        console.log("taskTitle----------------------------------------------------------");
+
+ 
+        fetch(`http://localhost:5000/api/v1/titlesDescriptions?title=${taskTitle}`,{
+            method: "get",
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then( res => {
+                console.log(res);
+                setTaskDescription(res?.data?.taskDescription)
+            })
+
+    }
 
     const handleAI = async () => {
 
@@ -19,10 +44,17 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
             return;
         }
 
-        taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
+        if(!taskDescription) {
+            priviousTitleMatch();
 
-        setError("") ;
-    } 
+        }
+        else {
+            
+            taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
+        }
+ 
+        setError("");
+    }
 
     const handleChange = e => {
         const { target } = e;
@@ -31,16 +63,18 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
             setTaskDescription("");
             setError("Complete task tilte first")
             return;
-        }
-
+        } 
         setError("");
-        
+
         setTaskDescription(target.value);
     };
 
     const handleDescriptionClick = () => {
-        // setTaskDescription(taskTitle)
-        console.log("click")
+ 
+        if(!taskDescription) {
+            priviousTitleMatch(); 
+        } 
+        
     }
 
     return (

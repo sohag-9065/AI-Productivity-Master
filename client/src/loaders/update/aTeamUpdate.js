@@ -1,6 +1,6 @@
  import { toast } from "react-toastify"; 
  
-const aTeamUpdate = (id, property ,task, refetch) => {
+const aTeamUpdate = (id, property ,task, refetch, message) => {
 
     const query = {
 
@@ -27,11 +27,11 @@ const aTeamUpdate = (id, property ,task, refetch) => {
             .then(data => {
                 console.log(data); 
                 refetch();
-                toast.success('Task created uccessfully', { autoClose: 1000 })
+                toast.success(`${message}`, { autoClose: 1000 })
             })
             .catch(error => toast.error(error.message));
 
-        return "Task Update Sucessfully";
+        return `${message}`;
 };
 
 export default aTeamUpdate;
