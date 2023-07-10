@@ -59,17 +59,14 @@ const SingleTaskDetails = () => {
                     setTask(task)
                 }
             })
-            setTeamleader(taskdetailInfoArr?.data?.teamleader);
-
-
+            setTeamleader(taskdetailInfoArr?.data?.teamleader); 
         }
 
     }, [taskdetailInfoArr, indx]);
 
     useEffect(() => {
 
-        if (task) {
-            console.log(task)
+        if (task) { 
             setTaskTitle(task?.taskTitle);
             setProgressValue(task?.progress);
             setPriorityValue(task?.taskPriority);

@@ -15,6 +15,11 @@ const taskInfoUpdate = (id, taskTitle, property, value, refetch) => {
         query["taskPriority"] = value;
     }
 
+    if( property == "taskComments") { 
+        query["taskComments"] = value;
+    }
+ 
+
     fetch(`http://localhost:5000/api/v1/teams/taskInfo/${id}`,
         {
             method: 'PATCH',

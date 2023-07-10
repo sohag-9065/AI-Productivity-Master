@@ -151,7 +151,7 @@ module.exports.updateATeam = async (req, res, next) => {
 module.exports.updateTaskInfo = async (req, res, next) => {
     try {
 
-        const { taskTitle, progress, taskPriority } = req.body;
+        const { taskTitle, progress, taskPriority, taskComments } = req.body;
         const db = getDb();
 
         const { id } = req.params;
@@ -167,6 +167,10 @@ module.exports.updateTaskInfo = async (req, res, next) => {
 
         if(taskPriority) {
             updateProperty = { "taskInfo.$.taskPriority": taskPriority };
+        }
+
+        if(taskComments) {
+            updateProperty = { "taskInfo.$.taskComments": taskComments };
         }
  
  

@@ -35,6 +35,7 @@ const TaskComments = (
 
 
         taskInfoUpdate(id, taskTitle, "taskComments", taskComments, refetch);
+        setComment("")
     }
 
     return (

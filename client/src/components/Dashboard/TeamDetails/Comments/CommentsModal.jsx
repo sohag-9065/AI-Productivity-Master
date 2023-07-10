@@ -7,13 +7,13 @@ const CommentsModal = ({ closeModal, onSubmit , comment, setComment}) => {
 
     const handleChange = e => {
         const { target } = e;
-        console.log(target.value)
+        // console.log(target.value)
         setComment(target.value);
     };
 
     const handleSubmit = (e) => {
 
-        console.log(e)
+        // console.log(e)
 
         e.preventDefault();
         
