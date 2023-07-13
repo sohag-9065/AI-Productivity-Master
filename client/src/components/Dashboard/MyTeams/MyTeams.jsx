@@ -10,7 +10,7 @@ const MyTeams = () => {
     const { userName } = useContext(AuthContext);
 
     const { data: myTeams, isLoading, refetch } = useQuery('teamsmy', () =>
-        fetch(`http://localhost:5000/api/v1/teams?teamleader=${userName}`, {
+        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/teams?teamleader=${userName}`, {
             method: 'GET'
         })
             .then(res => res.json())

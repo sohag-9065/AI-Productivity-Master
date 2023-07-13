@@ -1,29 +1,16 @@
 # AI Productivity Master 
  
-* live site: [click here]( )  
+* live site: [click here](https://marvelous-elf-0bda0a.netlify.app/ )  
 
 ## Technology uses of this site:
 ### Front End:
 
-* openai 
-* React
-* React-Query
-* Context API
-* react-slick
-* react-toastify"
-* react-icons 
-* react-datepicker 
-* firebase 
-* Tailwind  
+* openai, React, React-Query, Context API,react-slick,react-toastify, react-icons ,react-datepicker ,firebase ,Tailwind  
 
 
 ### Back End:
 
-* Node 
-* ExpressJs 
-* Folllow MVC Pattern
-* cors
-* dotenv
+* Node, ExpressJs, Folllow MVC Pattern, cors, dotenv
 
 ### Features of this site:
 * Mainly focused this project i try to use chatbot  help users  to create team and task title , description 
@@ -35,4 +22,14 @@
 * Enable users to comment on tasks
 * Implement a real-time activity feed that captures task updates, comments, andprogress.
     
-        
+![Alt text](output/img-1.png)
+![Alt text](output/img-2.png)
+![Alt text](output/img-3.png)
+![Alt text](output/img-4.png)
+![Alt text](output/img-5.png)
+![Alt text](output/img-6.png)
+![Alt text](output/img-7.png)
+![Alt text](output/img-8.png)
+![Alt text](output/img-10.png)
+ 
+
