@@ -38,6 +38,12 @@ const TaskComments = (
         setComment("")
     }
 
+    const handleDelete = (reaminCommnets) => {
+
+        taskInfoUpdate(id, taskTitle, "taskComments", reaminCommnets, refetch);
+
+    }
+
     return (
         <div className='mt-8'>
             <div className="w-[450px] lg:w-[550px]  px-5   py-6 space-y-2 bg-slate-200  rounded-lg  border-slate-500 ">
@@ -51,7 +57,7 @@ const TaskComments = (
                                 <span className=" border-b-2 border-slate-300 pb-2"> All Commnets  ({taskComments.length})</span>
                             </p>
 
-                            <TaskCommentsTable comments={taskComments}   />
+                            <TaskCommentsTable comments={taskComments}  handleDelete={handleDelete}  />
 
 
                         </div >

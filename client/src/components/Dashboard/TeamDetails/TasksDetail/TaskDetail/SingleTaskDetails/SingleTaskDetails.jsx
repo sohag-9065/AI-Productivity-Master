@@ -87,6 +87,7 @@ const SingleTaskDetails = () => {
         taskInfoUpdate(id, taskTitle, "taskPriority", priorityValue, refetch);
     }
  
+
     return (
         <div>
             <div className=" flex flex-col justify-center items-center mt-6 ">

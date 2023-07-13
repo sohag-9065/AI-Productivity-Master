@@ -35,11 +35,13 @@ const Comments = () => {
 
         comments.push(userComment);
 
-
-
         aTeamUpdate(id, "comments", comments, refetch, "Comment Added");
+    }
 
-        console.log(comments)
+    const handleDelete = (reaminCommnets) => {
+
+        aTeamUpdate(id, "comments", reaminCommnets, refetch, "Comment Added");
+
     }
 
     return (
@@ -55,7 +57,10 @@ const Comments = () => {
                                 <span className=" border-b-2 border-slate-300 pb-2"> All Commnets  ({comments.length})</span>
                             </p>
 
-                            <CommentsTable comments={comments} />
+                            <CommentsTable 
+                            comments={comments}
+                            handleDelete={handleDelete}
+                             />
 
 
                         </div >
@@ -65,7 +70,7 @@ const Comments = () => {
 
                 <div className="flex justify-center  ">
                     <p onClick={() => setCommentsModalOpen(true)} className=" flex items-center gap-4 transition  duration-300  hover:delay-100 cursor-pointer bg-secondary text-white  hover:bg-secondary/[.8]    px-5 py-3 rounded-full text-center  mt-4 ">
-                        Add New Comment
+                        Add New Comment  pppp
                         <BiMessageRoundedAdd className="text-white text-2xl" />
                     </p>
                 </div>
