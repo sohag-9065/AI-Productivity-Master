@@ -21,7 +21,7 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
 
         setIsLoading(true) ;
 
-        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/titlesDescriptions?title=${taskTitle}`,{
+        fetch(`http://localhost:5000/api/v1/titlesDescriptions?title=${taskTitle}`,{
             method: "get",
             headers: {
                 'content-type': 'application/json',

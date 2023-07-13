@@ -12,7 +12,7 @@ const MyProfile = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
     const { data: userInfoArr, isLoading, refetch } = useQuery('userInfo', () =>
-        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/users?name=${userName}`, {
+        fetch(`http://localhost:5000/api/v1/users?name=${userName}`, {
             method: 'GET'
         }
         ).then(res => res.json()));
@@ -27,7 +27,7 @@ const MyProfile = () => {
         )
     }
 
-    let usrssa = `https://blue-sparkling-duck.cyclic.app/api/v1/users?name=${userName}`
+    let usrssa = `http://localhost:5000/api/v1/users?name=${userName}`
     console.log(usrssa)
 
 

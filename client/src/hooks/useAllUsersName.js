@@ -9,7 +9,7 @@ const useAllUsersName = () => {
     useEffect(() => {
         setAllUsersNameLoading(true);
 
-        fetch('https://blue-sparkling-duck.cyclic.app/api/v1/users/name')
+        fetch('http://localhost:5000/api/v1/users/name')
             .then(res => res.json())
             .then(res => {
                 setAllUsersName(res.data);

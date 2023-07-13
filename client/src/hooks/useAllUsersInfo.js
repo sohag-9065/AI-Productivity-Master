@@ -11,7 +11,7 @@ const useAllUsersInfo = () => {
     useEffect(() => {
         setAllUsersInfoLoading(true); 
         
-        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/users`)
+        fetch(`http://localhost:5000/api/v1/users`)
             .then(res => res.json())
             .then(res => {
 

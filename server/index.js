@@ -7,13 +7,25 @@ const usersRoutes = require("./routes/v1/users.route");
 const teamsRoutes = require("./routes/v1/teams.route");
 const titlesDescriptionsRoutes = require("./routes/v1/TitlesDescriptions.route");
 const errorHandler = require("./middleware/errorHandler");
-const { connectToServer, getDb } = require("./utils/dbConnect");
+// const { connectToServer, getDb } = require("./utils/dbConnect");
+const { connectToServer } = require("./utils/dbConnect");
 const { ObjectId } = require('mongodb');
 
 app.use(cors());
 app.use(express.json());
 
-connectToServer();
+// connectToServer();
+
+
+connectToServer((err) => {
+    if (!err) {
+      app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
+      });
+    } else {
+      console.log(err);
+    }
+  });
 
 
 app.use("/api/v1/users", usersRoutes);

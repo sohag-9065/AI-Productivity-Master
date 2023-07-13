@@ -20,7 +20,7 @@ const taskInfoUpdate = (id, taskTitle, property, value, refetch) => {
     }
  
 
-    fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/teams/taskInfo/${id}`,
+    fetch(`http://localhost:5000/api/v1/teams/taskInfo/${id}`,
         {
             method: 'PATCH',
             headers: {

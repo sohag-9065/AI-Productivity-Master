@@ -30,7 +30,7 @@ const MembarAssign = ({ taskTitle, taskDescription, userAssign, setUserAssign })
 
     useEffect(() => {
         const usersData = () => {
-            fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/teams/${id}`)
+            fetch(`http://localhost:5000/api/v1/teams/${id}`)
                 .then(res => res.json())
                 .then(res => {
                     const userInfo = res.data.userInfo;

@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 const storeUserInformation = userInfo => {
  
-    fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/users`, {
+    fetch(`http://localhost:5000/api/v1/users`, {
         method: "POST",
         headers: {
           'content-type': 'application/json',

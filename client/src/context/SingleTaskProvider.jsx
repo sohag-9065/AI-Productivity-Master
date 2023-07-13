@@ -21,7 +21,7 @@ const SingleTaskProvider = ({ children }) => {
     const { id = "" } = useParams();
 
     const { data: taskInfoArr, isLoading, refetch } = useQuery('taskallInfo', () =>
-        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/teams/${id}`, {
+        fetch(`http://localhost:5000/api/v1/teams/${id}`, {
             method: 'GET'
         })
             .then(res => res.json())

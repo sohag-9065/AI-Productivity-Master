@@ -9,7 +9,7 @@ const InvitedTeams = () => {
     const { userName } = useContext(AuthContext); 
  
     const { data: inviteTeams, isLoading, refetch } = useQuery('teamsinvite', () =>
-        fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/teams/invite?user=${userName}`, {
+        fetch(`http://localhost:5000/api/v1/teams/invite?user=${userName}`, {
             method: 'GET'
         })
             .then(res => res.json())

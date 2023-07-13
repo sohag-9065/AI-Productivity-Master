@@ -1,6 +1,9 @@
+ 
+
+
 const { MongoClient } = require("mongodb");
 
-const connectionString = process.env.ATLAS_URI || "";
+const connectionString = process.env.MONGODB_URI || "";
 
 const client = new MongoClient(connectionString);
 

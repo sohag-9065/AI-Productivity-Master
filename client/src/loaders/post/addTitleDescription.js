@@ -5,7 +5,7 @@ const addTitleDescription = (data) => {
 
     console.log(data)
 
-    fetch(`https://blue-sparkling-duck.cyclic.app/api/v1/titlesDescriptions`, {
+    fetch(`http://localhost:5000/api/v1/titlesDescriptions`, {
         method: "Post",
         headers: {
             'content-type': 'application/json',
