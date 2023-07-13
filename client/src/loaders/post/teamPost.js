@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
  
 const teamPost = (team) => {
     
-    fetch(`http://localhost:5000/api/v1/teams`, {
+    fetch(`https://api-ai-one.vercel.app/api/v1/teams`, {
             method: "Post",
             headers: {
                 'content-type': 'application/json',

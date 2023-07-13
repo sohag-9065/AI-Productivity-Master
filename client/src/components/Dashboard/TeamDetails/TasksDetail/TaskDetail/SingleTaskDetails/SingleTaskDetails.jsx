@@ -23,7 +23,7 @@ const SingleTaskDetails = () => {
     const { id, indx } = useParams();
 
     const { data: taskdetailInfoArr, isLoading, refetch } = useQuery('taskdetailInfo', () =>
-        fetch(`http://localhost:5000/api/v1/teams/taskInfo/${id}`, {
+        fetch(`https://api-ai-one.vercel.app/api/v1/teams/taskInfo/${id}`, {
             method: 'GET'
         })
             .then(res => res.json())

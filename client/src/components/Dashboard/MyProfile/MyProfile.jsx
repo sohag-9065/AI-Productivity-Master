@@ -12,7 +12,7 @@ const MyProfile = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
     const { data: userInfoArr, isLoading, refetch } = useQuery('userInfo', () =>
-        fetch(`http://localhost:5000/api/v1/users?name=${userName}`, {
+        fetch(`https://api-ai-one.vercel.app/api/v1/users?name=${userName}`, {
             method: 'GET'
         }
         ).then(res => res.json()));
@@ -27,7 +27,7 @@ const MyProfile = () => {
         )
     }
 
-    let usrssa = `http://localhost:5000/api/v1/users?name=${userName}`
+    let usrssa = `https://api-ai-one.vercel.app/api/v1/users?name=${userName}`
     console.log(usrssa)
 
 

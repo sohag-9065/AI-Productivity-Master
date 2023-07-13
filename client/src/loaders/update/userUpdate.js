@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const userUpdate = (email, allSkills, refetch) => {
 
-    fetch(`http://localhost:5000/api/v1/users`,
+    fetch(`https://api-ai-one.vercel.app/api/v1/users`,
         {
             method: 'PATCH',
             headers: {

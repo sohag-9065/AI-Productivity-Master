@@ -15,7 +15,7 @@ const aTeamUpdate = (id, property ,task, refetch, message) => {
     console.log(query)
   
   
-    fetch(`http://localhost:5000/api/v1/teams/${id}`,
+    fetch(`https://api-ai-one.vercel.app/api/v1/teams/${id}`,
             {
                 method: 'PATCH',
                 headers: {
