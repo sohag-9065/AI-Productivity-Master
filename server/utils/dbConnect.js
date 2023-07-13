@@ -3,7 +3,7 @@
 
 const { MongoClient } = require("mongodb");
 
-const connectionString = process.env.MONGODB_URI || "";
+const connectionString =   "mongodb+srv://vercel-admin-user:ai_master_group@ai-master.fybszxm.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(connectionString);
 
