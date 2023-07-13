@@ -25,7 +25,7 @@ app.use("/api/v1/titlesDescriptions", titlesDescriptionsRoutes);
 
 
 app.get('/', (req, res) => {
-    res.send(`Hello  from Ai Productivity Master ${USER}` );
+    res.send(`Hello  from Ai Productivity Master ` );
 })
 
 app.all("*", (req, res) => {
