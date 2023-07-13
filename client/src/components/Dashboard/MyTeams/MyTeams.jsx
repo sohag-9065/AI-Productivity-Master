@@ -28,7 +28,7 @@ const MyTeams = () => {
         <>
             {
                 myTeams?.data?.length > 0 ?
-                    <div className={`grid grid-cols-1 gap-4  placeholder: ${myTeams?.data?.length > 1 ? " lg:grid-cols-2" : " "}`}>
+                    <div className={`grid grid-cols-1 gap-4   ${myTeams?.data?.length > 1 ? " lg:grid-cols-2" : " max-w-[600px] mx-auto "}`}>
                         {
                             myTeams?.data?.map((team, indx) => <TeamCard
                                 key={indx}

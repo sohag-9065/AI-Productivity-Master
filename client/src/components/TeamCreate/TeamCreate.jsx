@@ -82,7 +82,7 @@ const TeamCreate = () => {
                             userInfo={userInfo}
                         />
 
-                        <div className='mt-12'>
+                        <div className='mt-8'>
                             {errors && <div className="error  ">{errors}</div>}
 
                             <input type="submit" onClick={handleSubmit} className='btn mt-0 w-full  bg-[#6f51a0] hover:bg-secondary/[.6] text-white' value="Create New Team" />

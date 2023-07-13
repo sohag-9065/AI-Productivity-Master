@@ -159,6 +159,7 @@ const SingleTaskDetails = () => {
                             onSubmit={handlePriority}
                             value={priorityValue}
                             setValue={setPriorityValue}
+                            buttonText={"Priority"}
                         />
                     )
                 }
@@ -172,6 +173,7 @@ const SingleTaskDetails = () => {
                             onSubmit={handleProgress}
                             value={progressValue}
                             setValue={setProgressValue}
+                            buttonText={"Progress"}
                         />
                     )
                 }

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
-const ProgressUpdateModal = ({ value, setValue, closeModal, onSubmit }) => {
+const ProgressUpdateModal = ({ value, setValue, closeModal, onSubmit, buttonText }) => {
 
     const [error, setError] = useState(""); 
 
@@ -53,8 +53,8 @@ const ProgressUpdateModal = ({ value, setValue, closeModal, onSubmit }) => {
                     {
                         error && <p className='text-center mt-2 text-red-600'>{error}</p>
                     }
-                    <p onClick={handkeProgrsstionUpdate}   className={`    w-full   mt-4 bg-secondary/[.9] hover:bg-secondary/[.7]   text-white px-5  font-medium   py-3 rounded-full `} >
-                        Update Progress
+                    <p onClick={handkeProgrsstionUpdate}   className={` text-center   w-full   mt-4 bg-secondary/[.9] hover:bg-secondary/[.7]   text-white px-5  font-medium   py-3 rounded-full `} >
+                     Update   {buttonText}
                     </p>
                 </form>
             </div>

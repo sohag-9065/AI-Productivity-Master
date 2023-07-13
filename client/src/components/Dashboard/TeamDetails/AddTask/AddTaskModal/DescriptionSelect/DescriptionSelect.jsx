@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import Loading from '../../../../../shared/Loading';
 import { AiOutlineReload } from 'react-icons/ai'; 
 import taskDescriptionGenerate from '../../../../../../promptEngineer/taskDescriptionGenerate';
-import { toast } from 'react-toastify';
-
 
 
 const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) => {
@@ -18,12 +16,11 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
     }, [taskTitle]);
 
 
-
-    const priviousTitleMatch = () => {
-        console.log(taskTitle);
-        console.log("taskTitle----------------------------------------------------------");
-
+    const priviousTitleMatch = () => { 
  
+
+        setIsLoading(true) ;
+
         fetch(`http://localhost:5000/api/v1/titlesDescriptions?title=${taskTitle}`,{
             method: "get",
             headers: {
@@ -33,6 +30,7 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
             .then(res => res.json())
             .then( res => {
                 console.log(res);
+                setIsLoading( false ); 
                 setTaskDescription(res?.data?.taskDescription) ;
             })
 
@@ -48,14 +46,14 @@ const DescriptionSelect = ({ taskTitle, taskDescription, setTaskDescription }) =
         taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
  
 
-        // if(!taskDescription) {
-        //     priviousTitleMatch();
+        if(!taskDescription) {
+            priviousTitleMatch();
 
-        // }
-        // else {
+        }
+        else {
             
-        //     taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
-        // }
+            taskDescriptionGenerate(taskTitle, setTaskDescription, setIsLoading);
+        }
  
         setError("");
     }

@@ -25,7 +25,11 @@ const TeamDetails = () => {
             <TasksDetail />
 
             {
-                (teamleader == userName) && <AddTask />
+                (teamleader == userName)
+
+                &&
+                
+                <AddTask />
 
             }
 
@@ -33,7 +37,7 @@ const TeamDetails = () => {
 
                 <TeamInfo />
 
-            <Comments />
+                <Comments />
             </div>
 
 

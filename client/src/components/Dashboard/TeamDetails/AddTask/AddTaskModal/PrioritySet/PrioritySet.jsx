@@ -35,9 +35,9 @@ const PrioritySet = ({ taskTitle, taskDescription, taskPriority, setTaskPriority
         console.log(priority)
 
         setTaskPriority(priority);
-        if (priority > 5) {
-            setTaskPriority(5);
-            setErrorMessage(`You maximum priority level 5.`);
+        if (priority > 100) {
+            setTaskPriority(100);
+            setErrorMessage(`You maximum priority level 100.`);
         }
         else if (priority < 1) {
             setTaskPriority(1);

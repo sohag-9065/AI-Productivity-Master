@@ -5,7 +5,7 @@ import openai from "../openai/openai.config";
 const taskPrirityGenerate = async(taskTitle, taskDescription,  setTaskPriority, setIsLoading, handleAI) => {
     
     
-    let promt = `I created a task. This is the '${taskTitle}' task title and this is the ${taskDescription} task description . Give me a task priority level. it will be between 1 to 5 intiger value . just give me a intiger number. don't provide any word or new line`;
+    let promt = `I created a task. This is the '${taskTitle}' task title and this is the ${taskDescription} task description . Give me a task priority level. it will be between 1 to 9 intiger value . just give me a intiger number. don't provide any word or new line`;
     
     setIsLoading(true);
 
