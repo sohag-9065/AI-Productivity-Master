@@ -13,19 +13,19 @@ const { ObjectId } = require('mongodb');
 app.use(cors());
 app.use(express.json());
 
-connectToServer();
+// connectToServer();
 
 
-app.use("/api/v1/users", usersRoutes);
+// app.use("/api/v1/users", usersRoutes);
 
-app.use("/api/v1/teams", teamsRoutes);
+// app.use("/api/v1/teams", teamsRoutes);
 
-app.use("/api/v1/titlesDescriptions", titlesDescriptionsRoutes);
+// app.use("/api/v1/titlesDescriptions", titlesDescriptionsRoutes);
  
 
 
 app.get('/', (req, res) => {
-    res.send(`Hello  from Ai Productivity Master  ` );
+    res.send(`Hello  from Ai Productivity Master ${process.env.PORT } ` );
 })
 
 app.all("*", (req, res) => {
