@@ -17,6 +17,8 @@ const MyProfile = () => {
         }
         ).then(res => res.json()));
 
+       
+
     if (isLoading) {
         return (
             <div className='h-screen'>
@@ -24,6 +26,9 @@ const MyProfile = () => {
             </div>
         )
     }
+
+    let usrssa = `http://localhost:5000/api/v1/users?name=${userName}`
+    console.log(usrssa)
 
 
     const userSkillsAdd = data => {
