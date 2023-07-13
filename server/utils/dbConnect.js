@@ -6,10 +6,10 @@ const client = new MongoClient(connectionString);
 
 let conn, dbConnection;
 
-const connectToServer =  () => { 
+const connectToServer = async () => { 
   try {
 
-    conn =  client.connect();
+    conn = await client.connect();
     
     console.log("DB connect")
   } catch (e) {
