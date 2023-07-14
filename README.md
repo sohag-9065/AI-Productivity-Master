@@ -1,6 +1,7 @@
 # AI Productivity Master 
  
-* live site: [click here]( https://marvelous-elf-0bda0a.netlify.app/home)  
+* live site: [click here]( https://marvelous-elf-0bda0a.netlify.app/home)
+* Project Review video: [click here](https://drive.google.com/file/d/1BNrNmPQ5pbj_8xGuCwWG9OKZpFNOe_ch/view?usp=sharing)
 
 ## Technology uses of this site:
 ### Front End:
